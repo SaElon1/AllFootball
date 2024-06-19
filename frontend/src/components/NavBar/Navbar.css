@@ -1,0 +1,32 @@
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    padding: 16px;
+    box-shadow: 0 1px 3px -2px black;
+}
+
+.nav-logo img {
+    width: 150px;
+}
+
+.nav-login-cart img {
+    width: 75px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 50px;
+    color: #626262;
+    font-size: 15px;
+    font-weight: 500;
+
+}
+
+.nav-login-cart {
+    display: flex;
+    align-items: center;
+}
+
+
