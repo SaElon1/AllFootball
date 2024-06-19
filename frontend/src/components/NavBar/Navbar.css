@@ -27,6 +27,61 @@
 .nav-login-cart {
     display: flex;
     align-items: center;
+    gap: 45px;
+    cursor: pointer;
+}
+
+.nav-menu li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+}
+
+.nav-menu hr {
+    border: none;
+    width: 80%;
+    height: 3px;
+    border-radius: 10px;
+    background-color: #059418;
+}
+
+.nav-login-cart {
+    display: flex;
+    align-items: center;
+    gap: 45px;
+}
+.nav-login-cart button {
+    width: 135px;
+    height: 47px;
+    outline: none;
+    border: 1px solid rgb(1, 92, 1);
+    border-radius: 75px;
+    color: rgb(5, 186, 5);
+    font-size: 20px;
+    font-weight: 500;
+    background: white;
+    cursor: pointer;
+}
+
+.nav-login-cart button:active {
+    background: #626262;
+}
+
+.nav-cart-count {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -35px;
+    margin-left: -70px;
+    border-radius: 11px;
+    font-size: 14px;
+    background: green;
+    color: white;
 }
 
 
