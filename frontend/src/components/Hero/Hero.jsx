@@ -2,15 +2,25 @@ import React from 'react'
 import './Hero.css'
 import hand_icon from  '../Assets/hand_icon.png'
 import footballer from '../Assets/3D_footballer1.png'
+import arrow_img from '../Assets/arrow.png'
 
 const Hero = () => {
   return (
     <div className='hero'>
         <div className="hero-left">
-            <h2> HELLO CHECK OUT OUR LATEST OFFERS</h2>
-        </div>
+            <div>
         <div className="hero-handIcon">
+            <p>hello</p>
             <img src={hand_icon}></img>
+        </div>
+        <p>check out</p>
+        <p>our latest</p>
+        <p>offers</p>
+        </div>
+        <div className="hero-offersButton">
+            <div>Latest Offers</div>
+            <img src={arrow_img} alt="" />
+        </div>
         </div>
         <div className="hero-right">
             <img src={footballer} alt="" />
