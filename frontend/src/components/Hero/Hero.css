@@ -1,0 +1,39 @@
+.hero {
+    height: 120vh;
+    background: linear-gradient(180deg, #5df067, #e1ffea22 60%);
+    display: flex;
+}
+
+.hero-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding-left: 180px;
+    line-height: 1.1;
+}
+
+.hero-left h2{
+    color: black;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.hero-handIcon img {
+    width: 110px;
+}
+
+.hero-right{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-right img {
+    height: auto;
+    max-width: 70%;
+    max-height: 90%;
+
+}
