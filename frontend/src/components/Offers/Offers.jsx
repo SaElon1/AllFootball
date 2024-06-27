@@ -9,8 +9,8 @@ const Offers = () => {
         <h1>NEW OFFERS</h1>
         <hr />
         <div className="offer">
-            {offers.map((item) => {
-            return <Item image={item.image} name={item.name} new_price={item.new_price} old_price={item.old_price}/>
+            {offers.map((item,i) => {
+            return <Item key={i} image={item.image} name={item.name} new_price={item.new_price} old_price={item.old_price}/>
 })}
         </div>
 

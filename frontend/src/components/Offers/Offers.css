@@ -1,0 +1,13 @@
+.offers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: 90vh;
+}
+
+.offers h1 {
+    color: black;
+    font-size: 50px;
+    font-weight: 750;
+}
