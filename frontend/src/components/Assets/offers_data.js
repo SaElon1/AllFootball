@@ -8,7 +8,7 @@ import Blue_shorts from './Blue_shorts.png'
 
 let offerProducts = [
     {
-        id: 1,
+        id: 13,
         name: "Nike Phantom GT Light Green FG",
         category: "Shoes",
         image: [Nike_phantom, Nike_phantomL, Nike_phantomR],
@@ -16,15 +16,15 @@ let offerProducts = [
         old_price: 195.0,
     },
     {
-        id: 2,
+        id: 20,
         name: "Real Madrid purple shirt",
         category: "Shirts",
-        image: [Real_back_purple, Real_front_purple],
+        image: [ Real_front_purple,Real_back_purple],
         new_price: 40.0,
         old_price: 80.0,
     },
     {
-        id: 3,
+        id: 14,
         name: "Nike ball size 5",
         category: "Balls&Pads",
         image: [NikeBall_adult],
@@ -32,7 +32,7 @@ let offerProducts = [
         old_price: 30.0,
     },
     {
-        id: 4,
+        id: 6,
         name: "Blue Adidas shorts with number 90",
         category: "Socks&Shorts",
         image: [Blue_shorts],

@@ -196,7 +196,7 @@ let all_product = [
         id: 20,
         name: "Real Madrid purple shirt",
         category: "Shirts",
-        image: [Real_back_purple, Real_front_purple],
+        image: [Real_front_purple,Real_back_purple],
         new_price: 40.0,
         old_price: 80.0,
     },

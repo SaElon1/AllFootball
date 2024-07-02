@@ -1,11 +1,22 @@
 .item {
-    width: 350px;
-    height: 500px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
 }
 
 .item img {
     display: flex;
     width: 300px;
+    gap: 10px;
 }
 
 .item p {

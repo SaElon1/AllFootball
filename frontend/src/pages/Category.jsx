@@ -12,7 +12,7 @@ const Category = (props) => {
           if(props.category === item.category){
             console.log(`${item.category}${props.category}`)
             return (
-              <Item key={i} id={item.id} image={item.image} name={item.name} new_price={item.new_price}></Item>
+              <Item key={i} id={item.id} image={item.image[0]} name={item.name} new_price={item.new_price}></Item>
             )
           }
           else {
@@ -24,5 +24,4 @@ const Category = (props) => {
     </div>
   )
 }
-
 export default Category
