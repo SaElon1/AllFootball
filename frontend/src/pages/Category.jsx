@@ -5,7 +5,7 @@ import Item from '../components/Item/Item'
 
 const Category = (props) => {
   const {all_products} = useContext(ShopContext)
-  const [sortProduct, setSortProduct] = useState('asc')
+  const [sortProduct, setSortProduct] = useState('desc')
 
   const sortProducts = (products, sort) => {
     return products.sort((a,b) => {

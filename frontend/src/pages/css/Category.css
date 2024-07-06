@@ -1,13 +1,33 @@
 .category {
-    display: flex;
-    justify-content: center;
     padding: 20px;
+}
+.sort-products {
+    display: flex;
+    margin: 0px 170px;
+    justify-content: right;
+    gap: 10px;
+    align-items: center;
+}
+.sort-products label{
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.sort-products select {
+    padding: 5px 10px;
+    font-size: 13px;
+    border: 1px solid #359d02;
+    border-radius: 15px;
+    background-color: rgb(3, 122, 3);
+    cursor: pointer;
 }
 
 .category-products { 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
+    padding: 20px;
     justify-items: center;
     max-width: 1000px;
+    margin: 0 auto;
 }
