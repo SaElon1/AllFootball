@@ -10,7 +10,15 @@ const Offers = () => {
         <hr />
         <div className="offer">
             {offers.map((item,i) => {
-            return <Item key={i} image={item.image[0]} name={item.name} new_price={item.new_price} old_price={item.old_price}/>
+            return (
+            <Item 
+            key={i}
+            id = {item.id}
+            image={item.image[0]}
+            name={item.name}
+            new_price={item.new_price}
+            old_price={item.old_price}
+            />)
 })}
         </div>
 

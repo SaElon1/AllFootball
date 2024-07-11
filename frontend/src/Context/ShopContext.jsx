@@ -7,9 +7,11 @@ const ShopContextProvider = (props) => {
     const value = {all_products}
 
     return (
+        <div>
         <ShopContext.Provider value={value}>
             {props.children}
         </ShopContext.Provider>
+        </div>
     )
 }
 

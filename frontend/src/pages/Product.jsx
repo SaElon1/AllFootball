@@ -2,11 +2,12 @@ import React, { useContext } from 'react'
 import { ShopContext } from '../Context/ShopContext'
 import { useParams } from 'react-router-dom'
 import ProductDisplay from '../components/ProductDisplay/ProductDisplay'
+import offerProducts from '../components/Assets/offers_data'
 
 const Product = () => {
   const {all_products} = useContext(ShopContext)
   const {productId} = useParams()
-  const product = all_products.find((p)=> p.id === Number(productId))
+  const product = all_products.find((p)=> p.id === Number(productId)) || offerProducts.find((p)=> p.id ===Number(productId))
   console.log(productId)
   console.log(product)
 

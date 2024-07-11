@@ -1,4 +1,5 @@
 import React from 'react'
+import './ProductDisplay.css'
 
 const ProductDisplay = (props) => {
     const {product} = props
@@ -6,7 +7,6 @@ const ProductDisplay = (props) => {
     <div className='productdisplay'>
         <div className="product-images">
             {product.image.map((item, i) => {
-                console.log(item.image)
                 return (
                 <img key={i} src={item} alt="" />
                 )
