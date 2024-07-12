@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './ProductDisplay.css'
+import { ShopContext } from '../../Context/ShopContext'
 
 const ProductDisplay = (props) => {
+    const {addToCart} = useContext(ShopContext)
     const {product} = props
     const [mainImage, setMainImage] = useState(product.image[0])
 
@@ -31,7 +33,7 @@ const ProductDisplay = (props) => {
         <div className="display-right">
         <div className="product-name">{product.name}</div>
         <div className="product-price">{product.new_price}€</div>
-        <button>ADD TO CART</button>
+        <button onClick={()=>{addToCart(product.id)}}>ADD TO CART</button>
         </div>
     </div>
   )
