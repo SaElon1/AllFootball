@@ -18,19 +18,30 @@ useEffect(() => {
 
   return (
     <div className='cartitems'>
+        <div className="cart-orderInfo">
+            <p>Product</p>
+            <p>Title</p>
+            <p>Price</p>
+            <p>Size</p>
+            <p>Remove</p>
+        </div>
+        <hr />
         {all_products.map((p)=> {
             if(cartItems[p.id]>0){
-                return <div className="cart">
+                return <div className="cart-item">
                     <img src={p.image[0]} alt=''></img>
                     <p>{p.name}</p>
                     <p>Price: {p.new_price}€</p>
                     <p>Size:</p>
                     <button onClick={()=>{removeFromCart(p.id)}}>REMOVE ITEM</button>
-                </div>
+                    </div>
             }
         })}
         <div className="cart-totalprice">
         <h2>Total price: {totalPrice}€ </h2>
+        </div>
+        <div className="cart-orderbutton">
+            <button>ORDER</button>
         </div>
     </div>
   )
