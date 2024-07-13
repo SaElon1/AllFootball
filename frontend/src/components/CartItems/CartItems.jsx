@@ -39,8 +39,9 @@ useEffect(() => {
         })}
         <div className="cart-totalprice">
         <h1>Pricing</h1>
-        <p>Shipping Fee</p>
-        <p>Free</p>
+        <p>Subtotal: {totalPrice}€</p>
+        <hr />
+        <p>Shipping Fee: Free</p>
         <hr />
         <h2>Total</h2>
         <h2>{totalPrice}€</h2>
