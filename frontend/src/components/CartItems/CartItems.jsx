@@ -38,7 +38,12 @@ useEffect(() => {
             }
         })}
         <div className="cart-totalprice">
-        <h2>Total price: {totalPrice}€ </h2>
+        <h1>Pricing</h1>
+        <p>Shipping Fee</p>
+        <p>Free</p>
+        <hr />
+        <h2>Total</h2>
+        <h2>{totalPrice}€</h2>
         </div>
         <div className="cart-orderbutton">
             <button>ORDER</button>
