@@ -31,3 +31,52 @@
     max-width: 1000px;
     margin: 0 auto;
 }
+
+@media(max-width:1280px){
+    .sort-products{
+        margin: 0px 70px;
+    }
+    .category-products{
+        max-width: 900px;
+    
+    }
+}
+@media(max-width:1024px){
+
+    .sort-products{
+        margin: 0px 50px;
+    }
+    .category-products{
+        max-width: 800px;
+    }
+    .sort-products label{
+        font-size: 14px;
+    }
+
+}
+@media(max-width:800px){
+    .sort-products{
+        margin: 0px 40px;
+    }
+    .category-products{
+        max-width: 550px;
+    }
+    .sort-products label{
+        font-size: 14px;
+    }
+
+}
+@media(max-width:500px){
+    .sort-products{
+        margin: 0px 10px;
+    }
+    .category-products{
+        max-width: 400px;
+    }
+    .sort-products label{
+        font-size: 12px;
+    }
+    .sort-products select{
+        font-size: 11px;
+    }
+}
