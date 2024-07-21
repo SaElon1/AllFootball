@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const jwt = require("jsonwebtoken")
 const multer = require("multer")
 const cors = require("cors")
+const productRouter = require("./controllers/products")
 
 console.log("connecting to: ", config.MONGODB)
 mongoose.connect(config.MONGODB)
@@ -42,6 +43,8 @@ app.post("/upload", upload.single("product"),(req,res) => {
 
 app.use(express.json())
 app.use(cors())
+
+app.use('/api/product', productRouter)
 
 
 module.exports = app
