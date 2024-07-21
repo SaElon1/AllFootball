@@ -15,6 +15,11 @@ mongoose.connect(config.MONGODB)
         console.error(`error connecting to MONGODB ${config.MONGODB}`)
     })
 
+    //This is only for testing the app
+app.get("/", (req, res) =>{
+    res.send("Backend is running!")
+})
+
 app.use(express.json())
 app.use(cors())
 
