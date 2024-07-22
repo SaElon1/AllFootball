@@ -28,4 +28,11 @@ productRouter.post('/addproduct', async (req,res)=> {
     console.log(product)
 })
 
+productRouter.delete('/:id', async(req, res) => {
+    await Product.findByIdAndDelete(req.params.id)
+    res.status(204).end()
+})
+
+
+
 module.exports = productRouter
