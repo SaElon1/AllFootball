@@ -33,6 +33,24 @@ productRouter.delete('/:id', async(req, res) => {
     res.status(204).end()
 })
 
+productRouter.put('/:id', async(req, res) => {
+    const body = req.body
+
+    const product = {
+        name: body.name,
+        description: body.description,
+        category: body.category,
+        image: body.image,
+        new_price: body.new_price,
+        old_price: body.old_price
+    }
+
+    Product.findByIdAndUpdate(req.params.id, product, {new: true})
+    .then(updatedProduct => {
+        res.json(updatedProduct)
+    })
+})
+
 
 
 module.exports = productRouter
