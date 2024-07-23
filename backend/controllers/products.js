@@ -28,12 +28,12 @@ productRouter.post('/addproduct', async (req,res)=> {
     console.log(product)
 })
 
-productRouter.delete('/:id', async(req, res) => {
+productRouter.delete('/removeproduct', async(req, res) => {
     await Product.findByIdAndDelete(req.params.id)
     res.status(204).end()
 })
 
-productRouter.put('/:id', async(req, res) => {
+productRouter.put('/changeproduct', async(req, res) => {
     const body = req.body
 
     const product = {
@@ -49,6 +49,11 @@ productRouter.put('/:id', async(req, res) => {
     .then(updatedProduct => {
         res.json(updatedProduct)
     })
+})
+
+productRouter.get('/allproducts', async (req, res) => {
+    const products = await Product.find({})
+    res.json(products)
 })
 
 
