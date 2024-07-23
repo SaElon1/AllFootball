@@ -1,7 +1,19 @@
 const productRouter = require('express').Router()
+const multer = require('multer')
 const Product = require('../models/product')
 
-productRouter.post('/addproduct', async (req,res)=> {
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "./upload/images")
+    },
+    filename:(req, file, cb) => {
+        cb(null, Date.now() + "-" + file.originalname)
+    }
+})
+
+const upload = multer({storage})
+
+productRouter.post('/addproduct',upload.array('images',10), async (req,res)=> {
     let products = await Product.find({})
     let id;
     if(products.length>0)
@@ -11,15 +23,17 @@ productRouter.post('/addproduct', async (req,res)=> {
         id = prevProduct.id+1
     }
 
-
     const body = req.body
+
+    const imageUrls = req.files.map(file => `http//localhost:${process.env.PORT}/images/${file.filename}`)
 
     const product = new Product({
         id: id,
         name: body.name,
         description: body.description,
         category: body.category,
-        image: body.image,
+        size: body.size,
+        image: imageUrls,
         new_price: body.new_price,
         old_price: body.old_price
     })

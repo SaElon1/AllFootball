@@ -34,9 +34,12 @@ const storage = multer.diskStorage({
 const upload = multer({storage})
 
 app.use("/images", express.static("upload/images"))
-app.post("/upload", upload.single("product"),(req,res) => {
+
+app.post("/upload", upload.array("images", 10),(req,res) => {
+    const imageUrls = req.files.map(file => `http://localhost:${config.PORT}/images/${file.filename}`)
     res.json({
-        imageUrl: `http://localhost:${config.PORT}/images/${req.file.filename}`    })
+        imageUrls
+})
 })
 
 
