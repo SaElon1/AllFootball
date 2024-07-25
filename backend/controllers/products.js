@@ -1,6 +1,7 @@
 const productRouter = require('express').Router()
 const multer = require('multer')
 const Product = require('../models/product')
+const config = require('../utils/config')
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -25,7 +26,7 @@ productRouter.post('/addproduct',upload.array('images',10), async (req,res)=> {
 
     const body = req.body
 
-    const imageUrls = req.files.map(file => `http//localhost:${process.env.PORT}/images/${file.filename}`)
+    const imageUrls = req.files.map(file => `http://localhost:${config.PORT}/images/${file.filename}`)
 
     const product = new Product({
         id: id,
@@ -39,6 +40,7 @@ productRouter.post('/addproduct',upload.array('images',10), async (req,res)=> {
     })
     await product.save()
     res.status(201)
+    imageUrls.map(imageurl => res.json(imageurl))
     console.log(product)
 })
 
