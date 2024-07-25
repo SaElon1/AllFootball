@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import productService from '../../services/product'
+import './AddProducts.css'
 
 const Addproducts = () => {
   const [productInformation, setProductInformation] = useState({
@@ -55,17 +56,17 @@ const Addproducts = () => {
 
   return (
     <div>
-      <h1>Add a new product to the database</h1>
-      <form className='addproducts-form' onSubmit={handleSubmit}>
-        <div>
+      <h1>Add a new product to AllFootball</h1>
+      <form className='addproducts' onSubmit={handleSubmit}>
+        <div className='addproducts-form'>
           <p>Product Name</p>
         <input name="name" value={productInformation.name} onChange={handleChange} type="text" placeholder='Name'></input>
         </div>
-        <div>
+        <div className='addproducts-form'>
           <p>Description for the product</p>
         <input name="description" value={productInformation.description} onChange={handleChange} type="text" placeholder='Description'></input>
         </div>
-        <div>
+        <div className='addproducts-form'>
           <p>Product category</p>
           <select name="category" value={productInformation.category} onChange={handleChange} className='addproduct-selector'>
             <option value="Shirts">Shirts</option>
@@ -74,7 +75,7 @@ const Addproducts = () => {
             <option value="Balls&Pads">Balls & Padsß</option>
           </select>
         </div>
-        <div>
+        <div className='addproducts-form'>
           <p>Select size</p>
           <select name="size" value={productInformation.size} onChange={handleChange} className='addproduct-selector'>
           <option value="XS">XS</option>
@@ -96,15 +97,15 @@ const Addproducts = () => {
             <option value="45">45</option>
           </select>
         </div>
-        <div>
+        <div className='addproducts-form'>
           <p>Original price</p>
         <input name="old_price" value={productInformation.old_price} onChange={handleChange} type="text" placeholder='Original price'></input>
         </div>
-        <div>
+        <div className='addproducts-form'>
           <p>Offer price</p>
           <input name="new_price" value={productInformation.new_price} onChange={handleChange} type="text" placeholder='Offer price'></input>
         </div>
-        <div>
+        <div className='addproducts-images'>
           <p>Upload images of the product</p>
         <input name="images" onChange={handleFileChange} type="file" multiple></input>
         </div>
