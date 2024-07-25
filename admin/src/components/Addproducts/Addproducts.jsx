@@ -1,21 +1,67 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Addproducts = () => {
+  const [productInformation, setProductInformation] = useState({
+    name: "",
+    description:"",
+    category:"Shirts",
+    size:"XS",
+    old_price:"",
+    new_price:"",
+    images: []
+  })
+
+  const defaultProductInformation = {
+    name: "",
+    description:"",
+    category:"Shirts",
+    size:"XS",
+    old_price:"",
+    new_price:"",
+    images: []
+  }
+
+  const handleChange = (event) => {
+    setProductInformation({...productInformation,[event.target.name]:event.target.value})
+  }
+
+  const handleFileChange = (event) => {
+    setProductInformation({...productInformation, images: event.target.files})
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const formData = new FormData();
+    for (let key in productInformation) {
+      if (key === 'images') {
+        for (let i = 0; i < productInformation.images.length; i++) {
+          formData.append('images', productInformation.images[i]);
+        }
+      } else {
+        formData.append(key, productInformation[key]);
+      }
+    }
+    console.log(formData);
+    console.log(productInformation)
+    setProductInformation(defaultProductInformation)
+  }
+
+
   return (
     <div>
       <h1>Add a new product to the database</h1>
-      <form className='addproducts-form'>
+      <form className='addproducts-form' onSubmit={handleSubmit}>
         <div>
           <p>Product Name</p>
-        <input type="text" placeholder='Name'></input>
+        <input name="name" value={productInformation.name} onChange={handleChange} type="text" placeholder='Name'></input>
         </div>
         <div>
           <p>Description for the product</p>
-        <input type="text" placeholder='Description'></input>
+        <input name="description" value={productInformation.description} onChange={handleChange} type="text" placeholder='Description'></input>
         </div>
         <div>
           <p>Product category</p>
-          <select name="category" className='addproduct-selector'>
+          <select name="category" value={productInformation.category} onChange={handleChange} className='addproduct-selector'>
             <option value="Shirts">Shirts</option>
             <option value="Shoes">Shoes</option>
             <option value="Socks&Shirts">Socks & Shirts</option>
@@ -24,7 +70,7 @@ const Addproducts = () => {
         </div>
         <div>
           <p>Select size</p>
-          <select name="size" className='addproduct-selector'>
+          <select name="size" value={productInformation.size} onChange={handleChange} className='addproduct-selector'>
           <option value="XS">XS</option>
             <option value="S">S</option>
             <option value="M">M</option>
@@ -46,15 +92,15 @@ const Addproducts = () => {
         </div>
         <div>
           <p>Original price</p>
-        <input type="text" placeholder='Original price'></input>
+        <input name="old_price" value={productInformation.old_price} onChange={handleChange} type="text" placeholder='Original price'></input>
         </div>
         <div>
           <p>Offer price</p>
-          <input type="text" placeholder='Offer price'></input>
+          <input name="new_price" value={productInformation.new_price} onChange={handleChange} type="text" placeholder='Offer price'></input>
         </div>
         <div>
           <p>Upload images of the product</p>
-        <input type="file" multiple></input>
+        <input name="images" onChange={handleFileChange} type="file" multiple></input>
         </div>
         <div className="addproducts-submitButton">
           <button type='submit'>Add Product</button>
