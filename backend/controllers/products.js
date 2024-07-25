@@ -15,6 +15,9 @@ const storage = multer.diskStorage({
 const upload = multer({storage})
 
 productRouter.post('/addproduct',upload.array('images',10), async (req,res)=> {
+    if (!req.files) {
+        return res.status(400).json({ error: 'Images are required'});
+    }
     let products = await Product.find({})
     let id;
     if(products.length>0)
@@ -34,7 +37,7 @@ productRouter.post('/addproduct',upload.array('images',10), async (req,res)=> {
         description: body.description,
         category: body.category,
         size: body.size,
-        image: imageUrls,
+        images: imageUrls,
         new_price: body.new_price,
         old_price: body.old_price
     })

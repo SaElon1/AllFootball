@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import productService from '../../services/product'
 
 const Addproducts = () => {
   const [productInformation, setProductInformation] = useState({
@@ -43,7 +44,12 @@ const Addproducts = () => {
     }
     console.log(formData);
     console.log(productInformation)
-    setProductInformation(defaultProductInformation)
+    productService
+    .create(productInformation)
+    .then(returned => {
+      setProductInformation(defaultProductInformation)
+      console.log(returned)
+    })
   }
 
 
