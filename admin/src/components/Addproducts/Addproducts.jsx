@@ -78,8 +78,8 @@ const Addproducts = () => {
           <select name="category" value={productInformation.category} onChange={handleChange} className='addproduct-selector'>
             <option value="Shirts">Shirts</option>
             <option value="Shoes">Shoes</option>
-            <option value="Socks&Shirts">Socks & Shirts</option>
-            <option value="Balls&Pads">Balls & Padsß</option>
+            <option value="Socks&Shorts">Socks & Shorts</option>
+            <option value="Balls&Pads">Balls & Pads</option>
           </select>
         </div>
         <div className='addproducts-form'>
@@ -90,6 +90,8 @@ const Addproducts = () => {
             <option value="M">M</option>
             <option value="L">L</option>
             <option value="XL">XL</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
             <option value="34">34</option>
             <option value="35">35</option>
             <option value="36">36</option>

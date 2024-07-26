@@ -25,6 +25,8 @@ productRouter.post('/addproduct',upload.array('images',10), async (req,res)=> {
         let prevProduct_array = products.slice(-1)
         let prevProduct = prevProduct_array[0]
         id = prevProduct.id+1
+    }else{
+        id = 1
     }
 
     const body = req.body
@@ -42,8 +44,7 @@ productRouter.post('/addproduct',upload.array('images',10), async (req,res)=> {
         old_price: body.old_price
     })
     await product.save()
-    res.status(201)
-    imageUrls.map(imageurl => res.json(imageurl))
+    res.status(201).json(product)
     console.log(product)
 })
 
