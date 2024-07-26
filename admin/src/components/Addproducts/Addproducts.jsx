@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import productService from '../../services/product'
 import './AddProducts.css'
+import Notification from '../Notification/Notification'
 
 const Addproducts = () => {
   const [productInformation, setProductInformation] = useState({
@@ -12,6 +13,7 @@ const Addproducts = () => {
     new_price:"",
     images: []
   })
+  const [notificationMessage, setNotificationMessage] = useState(null)
 
   const defaultProductInformation = {
     name: "",
@@ -51,11 +53,16 @@ const Addproducts = () => {
       setProductInformation(defaultProductInformation)
       console.log(returned)
     })
+    setNotificationMessage(`${productInformation.name} was succesfully added`)
+    setTimeout(() => {
+      setNotificationMessage(null)
+    }, 4000) 
   }
 
 
   return (
     <div>
+      <Notification message={notificationMessage}/>
       <h1>Add a new product to AllFootball</h1>
       <form className='addproducts' onSubmit={handleSubmit}>
         <div className='addproducts-form'>
