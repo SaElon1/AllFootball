@@ -4,7 +4,7 @@ import {ShopContext} from '../Context/ShopContext'
 import Item from '../components/Item/Item'
 
 const Category = (props) => {
-  const {all_products} = useContext(ShopContext)
+  const {allproducts} = useContext(ShopContext)
   const [sortProduct, setSortProduct] = useState('desc')
 
   const sortProducts = (products, sort) => {
@@ -17,7 +17,7 @@ const Category = (props) => {
     })
   }
 
-  const filteredProducts = all_products.filter(item => props.category === item.category)
+  const filteredProducts = allproducts.filter(item => props.category === item.category)
   const sortedProducts = sortProducts(filteredProducts, sortProduct)
 
   const handleSortChange = (event) => {
@@ -40,7 +40,7 @@ const Category = (props) => {
           if(props.category === item.category){
             console.log(`${item.category}${props.category}`)
             return (
-              <Item key={i} id={item.id} image={item.image[0]} name={item.name} new_price={item.new_price}></Item>
+              <Item key={i} id={item.id} image={item.images[0]} name={item.name} new_price={item.new_price}></Item>
             )
           }
           else {

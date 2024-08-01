@@ -5,7 +5,7 @@ import { ShopContext } from '../../Context/ShopContext'
 const ProductDisplay = (props) => {
     const {addToCart} = useContext(ShopContext)
     const {product} = props
-    const [mainImage, setMainImage] = useState(product.image[0])
+    const [mainImage, setMainImage] = useState(product.images[0])
 
     const handleImageClick = (image) => {
       setMainImage(image)
@@ -19,7 +19,7 @@ const ProductDisplay = (props) => {
         <img src={mainImage}></img>
       </div>
         <div className="product-images">
-            {product.image.map((item, i) => {
+            {product.images.map((item, i) => {
                 return (
                 <img
                 key={i}

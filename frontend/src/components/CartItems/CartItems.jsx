@@ -3,18 +3,18 @@ import './CartItems.css'
 import { ShopContext } from '../../Context/ShopContext'
 
 const CartItems = () => {
-const {all_products, cartItems, removeFromCart} = useContext(ShopContext)
+const {allproducts, cartItems, removeFromCart} = useContext(ShopContext)
 const [totalPrice, setTotalPrice] = useState(0)
 
 useEffect(() => {
-    const total = all_products.reduce((sum, p) =>{
+    const total = allproducts.reduce((sum, p) =>{
         if (cartItems[p.id] > 0) {
             return sum + p.new_price
         }
         return sum
     }, 0)
     setTotalPrice(total)
-}, [all_products, cartItems])
+}, [allproducts, cartItems])
 
   return (
     <div className='cartitems'>
@@ -26,7 +26,7 @@ useEffect(() => {
             <p>Remove</p>
         </div>
         <hr />
-        {all_products.map((p)=> {
+        {allproducts.map((p)=> {
             if(cartItems[p.id]>0){
                 return <div className="cart-item">
                     <img src={p.image[0]} alt=''></img>
