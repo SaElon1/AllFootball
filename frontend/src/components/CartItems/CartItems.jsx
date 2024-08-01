@@ -29,7 +29,7 @@ useEffect(() => {
         {allproducts.map((p)=> {
             if(cartItems[p.id]>0){
                 return <div className="cart-item">
-                    <img src={p.image[0]} alt=''></img>
+                    <img src={p.images[0]} alt=''></img>
                     <p>{p.name}</p>
                     <p>Price: {p.new_price}€</p>
                     <p>Size:</p>
