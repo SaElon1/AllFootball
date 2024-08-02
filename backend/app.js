@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken")
 const multer = require("multer")
 const cors = require("cors")
 const productRouter = require("./controllers/products")
+const userRouter = require("./controllers/users")
 
 console.log("connecting to: ", config.MONGODB)
 mongoose.connect(config.MONGODB)
@@ -48,6 +49,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use('/api/product', productRouter)
+app.use('/api/user', userRouter)
 
 
 module.exports = app
