@@ -55,4 +55,5 @@
 .signuplogin-login span{
     color: green;
     font-weight: 500;
+    cursor: pointer;
 }
