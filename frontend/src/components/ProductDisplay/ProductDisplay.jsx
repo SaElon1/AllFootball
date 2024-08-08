@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './ProductDisplay.css'
 import { ShopContext } from '../../Context/ShopContext'
 
@@ -6,9 +6,25 @@ const ProductDisplay = (props) => {
     const {addToCart} = useContext(ShopContext)
     const {product} = props
     const [mainImage, setMainImage] = useState(product.images[0])
+    const [isLogged, setIsLogged] = useState(false)
+    
+    useEffect(() => {
+      const loggedUserJSON = window.localStorage.getItem('loggedAllfootballUser')
+      if(loggedUserJSON) {
+        setIsLogged(!isLogged)
+      }
+    }, [])
 
     const handleImageClick = (image) => {
       setMainImage(image)
+    }
+
+    const handleCartClick = () => {
+      if(isLogged) {
+        addToCart(product.id)
+      }else{
+        alert("Please login first")
+      }
     }
 
 
@@ -36,7 +52,7 @@ const ProductDisplay = (props) => {
         <div className="product-size">Size: {product.size}</div>
         <div className="product-price">{product.old_price}€</div>
         <div className="product-price">{product.new_price}€</div>
-        <button onClick={()=>{addToCart(product.id)}}>ADD TO CART</button>
+        <button onClick={handleCartClick}>ADD TO CART</button>
         </div>
     </div>
   )
