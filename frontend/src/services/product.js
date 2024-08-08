@@ -6,5 +6,10 @@ const getAll = async () => {
     return response.data
 }
 
-export default {getAll}
+const getOfferProducts = async () => {
+    const response = await axios.get(`${baseurl}/offerProducts`)
+    return response.data
+}
+
+export default {getAll, getOfferProducts}
 

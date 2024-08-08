@@ -15,6 +15,7 @@ const getCart = (products)=> {
 const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({})
     const [allproducts, setallproducts] = useState([])
+    const [offerproducts, setOfferproducts] = useState([])
 
   useEffect(() =>{
     productService
@@ -26,6 +27,14 @@ const ShopContextProvider = (props) => {
     .catch((error) => {
       console.error('Error in fetching products: ', error)
     })
+    }, [])
+
+    useEffect(() => {
+      productService
+      .getOfferProducts()
+      .then(offers => {
+        setOfferproducts(offers)
+      })
     }, [])
 
     console.log(allproducts)
@@ -49,7 +58,7 @@ const ShopContextProvider = (props) => {
         return total
     }
 
-    const value = {getCartItems,allproducts,cartItems,addToCart,removeFromCart}
+    const value = {getCartItems,allproducts,cartItems,addToCart,removeFromCart,offerproducts}
     return (
         <div>
         <ShopContext.Provider value={value}>
