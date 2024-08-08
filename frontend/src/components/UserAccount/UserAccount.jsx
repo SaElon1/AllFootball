@@ -1,9 +1,8 @@
 import React from 'react'
 
-const UserAccount = ({setIsLogged,handleLogOut, user}) => {
+const UserAccount = ({handleLogOut, user}) => {
   const handleClick = () => {
     handleLogOut()
-    setIsLogged(false)
   }
   return (
     <div className='UserAccount'>
