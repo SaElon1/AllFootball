@@ -49,10 +49,32 @@
     font-weight: 500;
     margin-bottom: 10px;
 }
+
+.product-description{
+    font-size: 28px;
+}
+
+.product-size {
+    margin-top: 10px;
+    font-size: 20px;
+}
 .product-price {
     display: flex;
     margin-top: 20px;
     font-size: 20px;
+    gap: 10px;
+}
+
+.product-oldprice {
+    text-decoration: line-through;
+    opacity: 40%;
+    color: red;
+    font-weight: 500;
+}
+
+.product-newprice {
+    color: green;
+    font-weight: 500;
 }
 
 .display-right button {

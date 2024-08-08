@@ -40,7 +40,7 @@ const Category = (props) => {
           if(props.category === item.category){
             console.log(`${item.category}${props.category}`)
             return (
-              <Item key={i} id={item.id} image={item.images[0]} name={item.name} new_price={item.new_price}></Item>
+              <Item key={i} id={item.id} image={item.images[0]} name={item.name} new_price={item.new_price} old_price={item.old_price}></Item>
             )
           }
           else {

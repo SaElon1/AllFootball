@@ -41,8 +41,10 @@ const ProductDisplay = ({product, isLogged}) => {
         <div className="product-name">{product.name}</div>
         <div className="product-description">{product.description}</div>
         <div className="product-size">Size: {product.size}</div>
-        <div className="product-price">{product.old_price}€</div>
-        <div className="product-price">{product.new_price}€</div>
+        <div className="product-price">
+        <div className="product-newprice">{product.new_price}€</div>
+        <div className="product-oldprice">{product.old_price}€</div>
+        </div>
         <button onClick={handleCartClick}>ADD TO CART</button>
         </div>
     </div>
