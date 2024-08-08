@@ -3,29 +3,19 @@ import './css/SignupLogin.css'
 import userService from '../services/user'
 import UserAccount from '../components/UserAccount/UserAccount'
 
- const SignupLogin = () => {
+ const SignupLogin = ({setIsLogged,user, setUser, handleLogOut}) => {
   const [userInformation, setUserInformation] = useState({
     name:"",
     email:"",
     password:""
   })
-
   const [isLogin, setIsLogin] = useState(false)
-  const [user, setUser] = useState(null)
 
   const resetUserInformation = {
     name:"",
     email:"",
-    password: ""
+    password: "" 
   }
-
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedAllfootballUser')
-    if(loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-    }
-  }, [])
 
   const handleChange = (event) => {
     setUserInformation({...userInformation, [event.target.name]:event.target.value})
@@ -51,16 +41,8 @@ import UserAccount from '../components/UserAccount/UserAccount'
       setUserInformation(resetUserInformation)
       setUser(returned)
       window.localStorage.setItem('loggedAllfootballUser', JSON.stringify(returned))
+      setIsLogged(true)
     })
-  }
-}
-
-const handleLogOut = () => {
-  if (window.confirm("Confirm log out")) {
-    window.localStorage.removeItem('loggedAllfootballUser')
-    setUser(null)
-  }else {
-    return;
   }
 }
 
@@ -72,7 +54,7 @@ const handleLogOut = () => {
   return (
     <div className='signuplogin'>
       {user ? (
-        <UserAccount user={user} handleLogOut={handleLogOut}/>
+        <UserAccount user={user} handleLogOut={handleLogOut} setIsLogged={setIsLogged}/>
       ) : (
       <div className="signuplogin-container">
         <h1>{isLogin ? "Login" : "Sign Up"}</h1>

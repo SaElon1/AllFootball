@@ -13,11 +13,34 @@ import productService from './services/product';
 
 
 function App() {
+  const [isLogged, setIsLogged] = useState(false)
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedAllfootballUser');
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      setIsLogged(true);
+      setUser(user);
+    }
+  }, [])
+
+  const handleLogOut = () => {
+    if (window.confirm("Confirm log out")) {
+      window.localStorage.removeItem('loggedAllfootballUser');
+      setIsLogged(false);
+      setUser(null);
+    }
+  }
+
 
   return (
     <div>
       <BrowserRouter>
-      <Navbar/>
+      <Navbar
+      isLogged={isLogged}
+      user={user}
+      />
       <Routes>
         <Route path='/' element={<Shop/>}/>
         <Route path='/shirts' element={<Category category="Shirts"/>}/>
@@ -28,7 +51,12 @@ function App() {
         <Route path=':productId' element={<Product/>}/>
         </Route>
         <Route path='/cart' element={<Cart/>}/>
-        <Route path='/login' element={<SignupLogin/>}/>
+        <Route path='/login' element={<SignupLogin 
+        user={user} 
+        handleLogOut={handleLogOut}
+        setUser={setUser}
+        setIsLogged={setIsLogged}
+        />}/>
       </Routes>
       <Footer/>
       </BrowserRouter>
