@@ -76,6 +76,12 @@ productRouter.get('/allproducts', async (req, res) => {
     res.json(products)
 })
 
+productRouter.get('/offerProducts', async(req,res) => {
+    const products = await Product.find({})
+    const offerProducts = products.slice(1).slice(-4)
+    res.json(offerProducts)
+})
+
 
 
 module.exports = productRouter
