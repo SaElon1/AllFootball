@@ -26,9 +26,9 @@ useEffect(() => {
             <p>Remove</p>
         </div>
         <hr />
-        {allproducts.map((p)=> {
+        {allproducts.map((p, key)=> {
             if(cartItems[p.id]>0){
-                return <div className="cart-item">
+                return <div className="cart-item" key={key}>
                     <img src={p.images[0]} alt=''></img>
                     <p>{p.name}</p>
                     <p>Price: {p.new_price}€</p>
