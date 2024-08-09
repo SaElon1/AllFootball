@@ -5,7 +5,7 @@ import productService from "../services/product";
 export const ShopContext = createContext(null)
 
 const getCart = (products)=> {
-    let cart = {}
+  let cart = {}
   for (let index = 0; index < products.length; index++){
      cart[index] = 0
   } 
@@ -16,25 +16,32 @@ const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({})
     const [allproducts, setallproducts] = useState([])
     const [offerproducts, setOfferproducts] = useState([])
+    const [isLogged, setIsLogged] = useState(false)
 
   useEffect(() =>{
-    productService
-    .getAll()
-    .then(products => {
-      setallproducts(products)
-      setCartItems(getCart(products))
-    })
-    .catch((error) => {
-      console.error('Error in fetching products: ', error)
-    })
-    }, [])
+    const loggedUserJSON = window.localStorage.getItem('loggedAllfootballUser');
+    if (loggedUserJSON) {
+      setIsLogged(true);
+    }
+    const fetchProductsAndCart = async () => {
+      try{
+    const products = await productService.getAll()
+    setallproducts(products)
 
-    useEffect(() => {
-      productService
-      .getOfferProducts()
-      .then(offers => {
-        setOfferproducts(offers)
-      })
+    const offerProducts = await productService.getOfferProducts()
+    setOfferproducts(offerProducts)
+
+    if(isLogged) {
+      const cart = await productService.getCartItems()
+      setCartItems(cart)
+    }else{
+      setCartItems(getCart(products))
+    }
+      }catch(error) {
+      console.error('Error in fetching products: ', error)
+    } 
+  }
+  fetchProductsAndCart()
     }, [])
 
     console.log(allproducts)
@@ -43,15 +50,12 @@ const ShopContextProvider = (props) => {
     const addCart = async (itemId) => {
       console.log(itemId)
         setCartItems((prevCart) => ({...prevCart,[itemId]:prevCart[itemId]+1}))
-        await productService
-        .addToCart(itemId)
-        .then(response => {
-          console.log(response)
-        })
+        await productService.addToCart(itemId)
     }
 
-    const removeFromCart = (itemId) => {
+    const removeFromCart = async (itemId) => {
         setCartItems((prevCart) => ({...prevCart,[itemId]:prevCart[itemId]-1}))
+        await productService.removeFromCart(itemId)
     }
 
     const getCartItems = () => {

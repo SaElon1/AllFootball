@@ -36,5 +36,29 @@ const addToCart = async itemId => {
     }
 }
 
-export default {getAll, getOfferProducts, addToCart,setToken}
+const removeFromCart = async itemId => {
+    try{
+        if (!token) {
+            throw new Error('Token is missing')
+        }
+        const config = {
+            headers: { Authorization: token}
+        }
+
+        console.log(`This is users token: ${token}`)
+    
+        const response = await axios.post(`${baseurl}/removefromcart`, {itemId} , config)
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const getCartItems = async () => {
+    const response = await axios.get(`${baseurl}/getcartitems`)
+    return response.data
+}
+
+
+export default {getAll, getOfferProducts, addToCart,setToken, removeFromCart,getCartItems}
 

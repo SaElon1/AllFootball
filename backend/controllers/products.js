@@ -101,9 +101,37 @@ productRouter.post('/addtocart', async(req, res) => {
 
     const itemId = req.body.itemId
 
+    user.cartItems[itemId] += 1
+    const updatedCart = await User.findByIdAndUpdate({_id:decodedToken.id}, {cartItems:user.cartItems})
+
     console.log(user)
     console.log(itemId)
-    res.status(200)
+    res.json(updatedCart)
+})
+
+productRouter.post('/removefromcart', async(req, res) => {
+    const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
+    if (!decodedToken.id) {
+        return res.status(401).json({error: 'Token invalid'})
+    }
+    const user = await User.findById(decodedToken.id)
+
+    const itemId = req.body.itemId
+
+    user.cartItems[itemId] = 0
+    const updatedCart = await User.findByIdAndUpdate({_id:decodedToken.id}, {cartItems:user.cartItems})
+
+    res.json(updatedCart)
+})
+
+productRouter.get('/getcartitems', async(req, res) => {
+    const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
+    if (!decodedToken.id) {
+        return res.status(401).json({error: 'Token invalid'})
+    }
+    const user = await User.findById(decodedToken.id)
+
+    res.json(user.cartItems)
 })
 
 

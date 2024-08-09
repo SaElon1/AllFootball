@@ -5,6 +5,7 @@ const config = require('../utils/config')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
+
 userRouter.post('/signIn', async(req, res) =>{
     const {name, email, password} = req.body
 
@@ -59,5 +60,6 @@ userRouter.post('/login', async(req,res) => {
     .status(200)
     .send({token, email: user.email, name: user.name})
 })
+
 
 module.exports = userRouter
