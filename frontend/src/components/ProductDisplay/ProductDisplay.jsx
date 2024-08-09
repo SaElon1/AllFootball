@@ -3,7 +3,7 @@ import './ProductDisplay.css'
 import { ShopContext } from '../../Context/ShopContext'
 
 const ProductDisplay = ({product, isLogged}) => {
-    const {addToCart} = useContext(ShopContext)
+    const {addCart} = useContext(ShopContext)
     const [mainImage, setMainImage] = useState(product.images[0])
 
     const handleImageClick = (image) => {
@@ -11,8 +11,9 @@ const ProductDisplay = ({product, isLogged}) => {
     }
 
     const handleCartClick = () => {
+      console.log(`From display ${product.id}`)
       if(isLogged) {
-        addToCart(product.id)
+        addCart(product.id)
       }else{
         alert("Please login first")
       }

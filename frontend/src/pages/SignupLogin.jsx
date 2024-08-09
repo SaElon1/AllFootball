@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './css/SignupLogin.css'
 import userService from '../services/user'
 import UserAccount from '../components/UserAccount/UserAccount'
-
+import productService from '../services/product'
  const SignupLogin = ({setIsLogged,user, setUser, handleLogOut}) => {
   const [userInformation, setUserInformation] = useState({
     name:"",
@@ -22,27 +22,23 @@ import UserAccount from '../components/UserAccount/UserAccount'
     console.log(userInformation)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     if(!isLogin){
-    userService
-    .createUser(userInformation)
-    .then(returned => {
+    const user = await userService.createUser(userInformation)
       alert('User created successfully')
       setUserInformation(resetUserInformation)
-      console.log(returned)
-    })
+      console.log(user)
+    
   }else {
-    userService
-    .login(userInformation)
-    .then(returned => {
-      console.log(returned)
+    const user = await userService.login(userInformation)
+      console.log(user)
       alert('Logged in successfully')
       setUserInformation(resetUserInformation)
-      setUser(returned)
-      window.localStorage.setItem('loggedAllfootballUser', JSON.stringify(returned))
+      setUser(user)
+      window.localStorage.setItem('loggedAllfootballUser', JSON.stringify(user))
       setIsLogged(true)
-    })
+      productService.setToken(user.token)
   }
 }
 

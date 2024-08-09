@@ -2,6 +2,16 @@ const productRouter = require('express').Router()
 const multer = require('multer')
 const Product = require('../models/product')
 const config = require('../utils/config')
+const jwt = require('jsonwebtoken')
+const User = require('../models/user')
+
+const getTokenFrom = req => {
+    const authorization = req.get('authorization')
+    if (authorization && authorization.startsWith('Bearer')) {
+        return authorization.replace('Bearer', '')
+    }
+    return null
+}
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -80,6 +90,20 @@ productRouter.get('/offerProducts', async(req,res) => {
     const products = await Product.find({})
     const offerProducts = products.slice(1).slice(-4)
     res.json(offerProducts)
+})
+
+productRouter.post('/addtocart', async(req, res) => {
+    const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
+    if (!decodedToken.id) {
+        return res.status(401).json({error: 'Token invalid'})
+    }
+    const user = await User.findById(decodedToken.id)
+
+    const itemId = req.body.itemId
+
+    console.log(user)
+    console.log(itemId)
+    res.status(200)
 })
 
 

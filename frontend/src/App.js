@@ -8,6 +8,7 @@ import Cart from './pages/Cart'
 import SignupLogin from './pages/SignupLogin'
 import Footer from './components/Footer/Footer';
 import { useEffect, useState } from 'react';
+import productService from './services/product';
 
 
 
@@ -22,6 +23,7 @@ function App() {
       const user = JSON.parse(loggedUserJSON);
       setIsLogged(true);
       setUser(user);
+      productService.setToken(user.token)
     }
   }, [])
 

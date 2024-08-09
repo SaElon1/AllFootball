@@ -1,6 +1,13 @@
 import axios from 'axios'
 const baseurl = "http://localhost:3001/api/product"
 
+
+let token = null
+
+const setToken = newToken => {
+    token = `Bearer${newToken}`
+}
+
 const getAll = async () => {
     const response = await axios.get(`${baseurl}/allproducts`)
     return response.data
@@ -11,5 +18,23 @@ const getOfferProducts = async () => {
     return response.data
 }
 
-export default {getAll, getOfferProducts}
+const addToCart = async itemId => {
+    try{
+        if (!token) {
+            throw new Error('Token is missing')
+        }
+        const config = {
+            headers: { Authorization: token}
+        }
+
+        console.log(`This is users token: ${token}`)
+    
+        const response = await axios.post(`${baseurl}/addtocart`, {itemId} , config)
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export default {getAll, getOfferProducts, addToCart,setToken}
 

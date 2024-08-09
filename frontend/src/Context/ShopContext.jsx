@@ -40,8 +40,14 @@ const ShopContextProvider = (props) => {
     console.log(allproducts)
     console.log(cartItems)
 
-    const addToCart = (itemId) => {
+    const addCart = async (itemId) => {
+      console.log(itemId)
         setCartItems((prevCart) => ({...prevCart,[itemId]:prevCart[itemId]+1}))
+        await productService
+        .addToCart(itemId)
+        .then(response => {
+          console.log(response)
+        })
     }
 
     const removeFromCart = (itemId) => {
@@ -58,7 +64,7 @@ const ShopContextProvider = (props) => {
         return total
     }
 
-    const value = {getCartItems,allproducts,cartItems,addToCart,removeFromCart,offerproducts}
+    const value = {getCartItems,allproducts,cartItems,addCart,removeFromCart,offerproducts}
     return (
         <div>
         <ShopContext.Provider value={value}>
