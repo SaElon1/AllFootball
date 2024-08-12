@@ -6,7 +6,7 @@ export const ShopContext = createContext(null)
 
 const getCart = (products)=> {
   let cart = {}
-  for (let index = 0; index < products.length; index++){
+  for (let index = 0; index <= products.length; index++){
      cart[index] = 0
   } 
   return cart
@@ -16,33 +16,44 @@ const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({})
     const [allproducts, setallproducts] = useState([])
     const [offerproducts, setOfferproducts] = useState([])
-    const [isLogged, setIsLogged] = useState(false)
 
   useEffect(() =>{
-    const loggedUserJSON = window.localStorage.getItem('loggedAllfootballUser');
-    if (loggedUserJSON) {
-      setIsLogged(true);
-    }
-    const fetchProductsAndCart = async () => {
+    const fetchProducts = async () => {
       try{
     const products = await productService.getAll()
     setallproducts(products)
 
     const offerProducts = await productService.getOfferProducts()
     setOfferproducts(offerProducts)
-
-    if(isLogged) {
-      const cart = await productService.getCartItems()
-      setCartItems(cart)
-    }else{
-      setCartItems(getCart(products))
-    }
       }catch(error) {
       console.error('Error in fetching products: ', error)
     } 
   }
-  fetchProductsAndCart()
+  fetchProducts()
     }, [])
+
+    useEffect(() => {
+      const fetchCartItems = async () => {
+        try{
+          if(window.localStorage.length > 0) {
+            const cart = await productService.getCartItems()
+            if(cart == undefined) {
+              console.log('Problem in cart rendering')
+              return
+            }else{
+              console.log(`Cartitems from database: ${cart}`)
+              setCartItems(cart)
+            }
+          }else{
+            setCartItems(getCart(allproducts))
+            console.log('cartitems from backend')
+          }
+        }catch(error) {
+          console.error('Error in fetching cartItems'. error)
+        }
+      }
+      fetchCartItems()
+    },[])
 
     console.log(allproducts)
     console.log(cartItems)

@@ -55,8 +55,19 @@ const removeFromCart = async itemId => {
 }
 
 const getCartItems = async () => {
-    const response = await axios.get(`${baseurl}/getcartitems`)
-    return response.data
+    try{
+        if (!token) {
+            throw new Error('Token is missing')
+        }
+        const config = {
+            headers: { Authorization: token}
+        }
+        console.log(`This is users token: ${token}`)
+        const response = await axios.get(`${baseurl}/getcartitems`,config)
+        return response.data
+    }catch (error){
+        console.log(error)
+    }
 }
 
 
