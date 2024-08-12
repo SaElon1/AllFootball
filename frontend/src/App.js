@@ -7,34 +7,15 @@ import Product from './pages/Product'
 import Cart from './pages/Cart'
 import SignupLogin from './pages/SignupLogin'
 import Footer from './components/Footer/Footer';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import productService from './services/product';
+import { UserContext } from './Context/UserContext';
 
 
 
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false)
-  const [user, setUser] = useState(null)
-
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedAllfootballUser');
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON);
-      setIsLogged(true);
-      setUser(user);
-      productService.setToken(user.token)
-    }
-  }, [])
-
-  const handleLogOut = () => {
-    if (window.confirm("Confirm log out")) {
-      window.localStorage.removeItem('loggedAllfootballUser');
-      setIsLogged(false);
-      setUser(null);
-    }
-  }
-
+  const {isLogged, user, setIsLogged, setUser, handleLogOut} = useContext(UserContext)
 
   return (
     <div>
