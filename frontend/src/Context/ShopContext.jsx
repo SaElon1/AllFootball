@@ -1,6 +1,7 @@
-import React, {createContext, useState,useEffect} from "react";
+import React, {createContext, useState,useEffect, useContext} from "react";
 import all_products from '../components/Assets/all_products'
 import productService from "../services/product";
+import { UserContext } from "./UserContext";
 
 export const ShopContext = createContext(null)
 
@@ -16,6 +17,8 @@ const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({})
     const [allproducts, setallproducts] = useState([])
     const [offerproducts, setOfferproducts] = useState([])
+
+    const {isLogged} = useContext(UserContext)
 
   useEffect(() =>{
     const fetchProducts = async () => {
@@ -35,7 +38,7 @@ const ShopContextProvider = (props) => {
     useEffect(() => {
       const fetchCartItems = async () => {
         try{
-          if(window.localStorage.length > 0) {
+          if(isLogged) {
             const cart = await productService.getCartItems()
             if(cart == undefined) {
               console.log('Problem in cart rendering')
@@ -53,7 +56,7 @@ const ShopContextProvider = (props) => {
         }
       }
       fetchCartItems()
-    },[])
+    },[isLogged])
 
     console.log(allproducts)
     console.log(cartItems)
