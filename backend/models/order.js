@@ -9,7 +9,10 @@ const orderSchema = new mongoose.Schema({
         type: Date,
     },
     products:{
-        type: [Object],
+        type: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
+        }],
         required: true
     },
     totalPrice:{
