@@ -37,3 +37,5 @@ orderRouter.post('/order', async(req, res) => {
         console.error(error)
     }
 })
+
+module.exports = orderRouter
