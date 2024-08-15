@@ -70,6 +70,21 @@ const getCartItems = async () => {
     }
 }
 
+const placeOrder = async (newObject) => {
+    try {
+        if (!token) {
+            throw new Error ('Token is missing')
+        }
+        const config = {
+            headers: { Authorization: token}
+        }
+        const response = await axios.post(`${baseurl}/order`,newObject, config)
+        return response.data
+    }catch(error){
+        console.error(error)
+    }
+}
+
 
 export default {getAll, getOfferProducts, addToCart,setToken, removeFromCart,getCartItems}
 
