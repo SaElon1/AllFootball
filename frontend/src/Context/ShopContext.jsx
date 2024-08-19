@@ -1,7 +1,7 @@
 import React, {createContext, useState,useEffect, useContext} from "react";
-import all_products from '../components/Assets/all_products'
 import productService from "../services/product";
 import { UserContext } from "./UserContext";
+import product from "../services/product";
 
 export const ShopContext = createContext(null)
 
@@ -82,7 +82,20 @@ const ShopContextProvider = (props) => {
         return total
     }
 
-    const value = {getCartItems,allproducts,cartItems,addCart,removeFromCart,offerproducts}
+    const getCartProducts = (cartItems) => {
+      const cartProducts = []
+
+      for (const itemId in cartItems) {
+        const inCart = cartItems[itemId] 
+      if(inCart > 0){
+        const product = allproducts.find((product) => product.id === Number(itemId))
+        cartProducts.push(product)
+    }
+    }
+      return cartProducts
+    }
+
+    const value = {getCartItems,allproducts,cartItems,addCart,removeFromCart,offerproducts, getCartProducts}
     return (
         <div>
         <ShopContext.Provider value={value}>
