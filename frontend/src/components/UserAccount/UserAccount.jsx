@@ -1,4 +1,5 @@
 import React from 'react'
+import './UserAccount.css'
 
 const UserAccount = ({handleLogOut, user}) => {
   const handleClick = () => {
