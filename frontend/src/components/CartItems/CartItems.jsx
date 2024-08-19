@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './CartItems.css'
 import { ShopContext } from '../../Context/ShopContext'
+import Order from '../Order/Order'
 
 const CartItems = () => {
-const {allproducts, cartItems, removeFromCart} = useContext(ShopContext)
+const {allproducts, cartItems, removeFromCart, getCartProducts} = useContext(ShopContext)
 const [totalPrice, setTotalPrice] = useState(0)
 
 useEffect(() => {
@@ -46,9 +47,7 @@ useEffect(() => {
         <h2>Total</h2>
         <h2>{totalPrice}€</h2>
         </div>
-        <div className="cart-orderbutton">
-            <button>ORDER</button>
-        </div>
+        <Order totalPrice={totalPrice} cartitems={getCartProducts(cartItems)}></Order>
     </div>
   )
 }
