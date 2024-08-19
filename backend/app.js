@@ -7,6 +7,7 @@ const multer = require("multer")
 const cors = require("cors")
 const productRouter = require("./controllers/products")
 const userRouter = require("./controllers/users")
+const orderRouter = require("./controllers/orders")
 
 console.log("connecting to: ", config.MONGODB)
 mongoose.connect(config.MONGODB)
@@ -50,6 +51,7 @@ app.use(cors())
 
 app.use('/api/product', productRouter)
 app.use('/api/user', userRouter)
+app.use('/api/product',orderRouter)
 
 
 module.exports = app

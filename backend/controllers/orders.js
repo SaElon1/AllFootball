@@ -24,7 +24,7 @@ orderRouter.post('/order', async(req, res) => {
 
     const newOrder = new Order({
         products:products,
-        date: Date.now,
+        date: Date.now(),
         totalPrice:totalPrice,
         user: user._id
     })
