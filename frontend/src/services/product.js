@@ -85,6 +85,22 @@ const placeOrder = async (newObject) => {
     }
 }
 
+const getOrderHistory = async () => {
+    try{
+        if(!token) {
+            throw new Error('Token is missing')
+        }
+        const config = {
+            headers : {Authorization: token}
+        }
 
-export default {getAll, getOfferProducts, addToCart,setToken, removeFromCart,getCartItems, placeOrder}
+        const response = await axios.get(`${baseurl}/orderhistory`, config)
+        return response.data
+    }catch(error){
+        console.error(error)
+    }
+}
+
+
+export default {getAll, getOfferProducts, addToCart,setToken, removeFromCart,getCartItems, placeOrder, getOrderHistory}
 
