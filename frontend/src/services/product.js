@@ -86,5 +86,5 @@ const placeOrder = async (newObject) => {
 }
 
 
-export default {getAll, getOfferProducts, addToCart,setToken, removeFromCart,getCartItems}
+export default {getAll, getOfferProducts, addToCart,setToken, removeFromCart,getCartItems, placeOrder}
 
