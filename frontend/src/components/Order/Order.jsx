@@ -15,7 +15,6 @@ const Order = ({cartitems, totalPrice}) => {
                 products: cartitems,
                 totalPrice: totalPrice
             }
-
             try{
                 const newOrder = await productService.placeOrder(order)
                 console.log('Order made', newOrder)
