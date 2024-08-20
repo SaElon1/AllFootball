@@ -8,6 +8,7 @@ const cors = require("cors")
 const productRouter = require("./controllers/products")
 const userRouter = require("./controllers/users")
 const orderRouter = require("./controllers/orders")
+const errorHandler = require("./utils/middleware")
 
 console.log("connecting to: ", config.MONGODB)
 mongoose.connect(config.MONGODB)
@@ -52,6 +53,8 @@ app.use(cors())
 app.use('/api/product', productRouter)
 app.use('/api/user', userRouter)
 app.use('/api/product',orderRouter)
+
+app.use(errorHandler)
 
 
 module.exports = app
