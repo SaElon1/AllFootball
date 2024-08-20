@@ -50,11 +50,9 @@ orderRouter.get('/orderhistory', async(req, res) => {
         const user = await User.findById(decodedToken.id)
         const orderIds = user.orders
 
-        const orders = []
-        for (let index = 0; index < orderIds.length; index++) {
-            const order = await Order.findById(orderIds[index])
-            orders.push(order)
-        }
+        
+        const orders = await Order.find({_id: {$in: orderIds}})
+        .populate('products') 
         res.status(200).json(orders)
 
     }catch(error) {
