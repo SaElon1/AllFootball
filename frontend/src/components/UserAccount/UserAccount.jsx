@@ -33,7 +33,7 @@ const UserAccount = ({handleLogOut}) => {
         <div className="UserAccount-orderHistory">
           <h2>Order History</h2>
           {orderHistory.map((order, k) => (
-            <OrderData totalPrice={order.totalPrice} date={order.date} products={order.products}></OrderData>
+            <OrderData key={k} totalPrice={order.totalPrice} date={order.date} products={order.products}></OrderData>
           ))}
         </div>
         </div>
