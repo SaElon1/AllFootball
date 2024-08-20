@@ -11,15 +11,14 @@ const getTokenFrom = req => {
     return null
 }
 
-orderRouter.post('/order', async(req, res) => {
+orderRouter.post('/order', async(req, res, next) => {
     const {products, totalPrice} = req.body
 
-    const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
+    try {
+        const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
     if (!decodedToken.id) {
         return res.status(401).json({error: 'Token invalid'})
     }
-
-    try {
         const user = await User.findById(decodedToken.id)
 
     const newOrder = new Order({
@@ -35,18 +34,17 @@ orderRouter.post('/order', async(req, res) => {
     await user.save()
     res.status(200).json(savedOrder)
     }catch(error){
-        console.error(error)
+        next(error)
     }
 })
 
-orderRouter.get('/orderhistory', async(req, res) => {
+orderRouter.get('/orderhistory', async(req, res, next) => {
 
-    const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
+    try{
+        const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
     if (!decodedToken.id) {
         return res.status(401).json({error: 'Token invalid'})
     }
-
-    try{
         const user = await User.findById(decodedToken.id)
         const orderIds = user.orders
 
@@ -56,7 +54,7 @@ orderRouter.get('/orderhistory', async(req, res) => {
         res.status(200).json(orders)
 
     }catch(error) {
-        console.error('Error in fetching orders', error)
+        next(error)
     }
 
 })

@@ -92,12 +92,13 @@ productRouter.get('/offerProducts', async(req,res) => {
     res.json(offerProducts)
 })
 
-productRouter.post('/addtocart', async(req, res) => {
-    const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
+productRouter.post('/addtocart', async(req, res, next) => {
+    try {
+        const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
     if (!decodedToken.id) {
         return res.status(401).json({error: 'Token invalid'})
     }
-    const user = await User.findById(decodedToken.id)
+        const user = await User.findById(decodedToken.id)
 
     const itemId = req.body.itemId
 
@@ -107,31 +108,45 @@ productRouter.post('/addtocart', async(req, res) => {
     console.log(user)
     console.log(itemId)
     res.json(updatedCart)
+
+    }catch(error){
+        next(error)
+    }
 })
 
-productRouter.post('/removefromcart', async(req, res) => {
-    const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
+productRouter.post('/removefromcart', async(req, res, next) => {
+    try{
+        const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
     if (!decodedToken.id) {
         return res.status(401).json({error: 'Token invalid'})
     }
-    const user = await User.findById(decodedToken.id)
+        const user = await User.findById(decodedToken.id)
 
-    const itemId = req.body.itemId
+        const itemId = req.body.itemId
+    
+        user.cartItems[itemId] = 0
+        const updatedCart = await User.findByIdAndUpdate({_id:decodedToken.id}, {cartItems:user.cartItems})
+    
+        res.json(updatedCart)
 
-    user.cartItems[itemId] = 0
-    const updatedCart = await User.findByIdAndUpdate({_id:decodedToken.id}, {cartItems:user.cartItems})
-
-    res.json(updatedCart)
+    }catch(error){
+        next(error)
+    }
 })
 
-productRouter.get('/getcartitems', async(req, res) => {
-    const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
+productRouter.get('/getcartitems', async(req, res, next) => {
+    try{
+        const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
     if (!decodedToken.id) {
         return res.status(401).json({error: 'Token invalid'})
     }
-    const user = await User.findById(decodedToken.id)
+        const user = await User.findById(decodedToken.id)
 
-    res.json(user.cartItems)
+        res.json(user.cartItems)
+
+    }catch(error){
+        next(error)
+    }
 })
 
 
