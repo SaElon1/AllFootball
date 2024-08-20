@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import './UserAccount.css'
 import productService from '../../services/product'
 import { UserContext } from '../../Context/UserContext'
+import OrderData from '../OrderData/OrderData'
 
 const UserAccount = ({handleLogOut}) => {
   const {user} = useContext(UserContext)
@@ -32,7 +33,7 @@ const UserAccount = ({handleLogOut}) => {
         <div className="UserAccount-orderHistory">
           <h2>Order History</h2>
           {orderHistory.map((order, k) => (
-            <ul>Total: {order.totalPrice}</ul>
+            <OrderData totalPrice={order.totalPrice} date={order.date} products={order.products}></OrderData>
           ))}
         </div>
         </div>
