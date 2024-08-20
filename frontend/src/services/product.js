@@ -8,6 +8,19 @@ const setToken = newToken => {
     token = `Bearer${newToken}`
 }
 
+axios.interceptors.response.use(
+    response => response,
+    error => {
+        if(error.response && error.response.status === 401){
+            alert('Session expired. Please log in again')
+            window.localStorage.removeItem('loggedAllfootballUser')
+            window.location.href = '/login'
+        }
+
+        return Promise.reject(error)
+    }
+)
+
 const getAll = async () => {
     const response = await axios.get(`${baseurl}/allproducts`)
     return response.data
