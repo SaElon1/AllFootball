@@ -14,6 +14,10 @@ const OrderData = ({totalPrice, date, products}) => {
   return (
     <div className='OrderData'>
         <div className="OrderData-format">
+          <div className="OrderData-dateprice">
+          <h2>Order date: {formattedDate}</h2>
+          <p>Total price: {totalPrice}€</p>       
+          </div>
           <div className="OrderData-products">
             {products.map((product, k) => (
               <div key={k}>
@@ -22,8 +26,6 @@ const OrderData = ({totalPrice, date, products}) => {
             </div>
             ))}
           </div>
-        <p>Total price: {totalPrice}€ |</p>
-        <p>Order made: {formattedDate} |</p>
         </div>
         <div className="OrderData-hr">
             <hr />

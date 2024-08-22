@@ -1,5 +1,5 @@
 .OrderData-format {
-    margin-top: 10px;
+    margin-top: 20px;
     display: flex;
     gap: 10px;
 }
@@ -13,8 +13,17 @@
     gap: 100px
 }
 
+.OrderData-products p {
+    max-width: 100px;
+}
+
 .OrderData-hr hr{
     height: 3px;
     background: #060505;
     border: 0;
+}
+
+.OrderData-dateprice {
+    display: flex;
+    flex-direction: column;
 }
