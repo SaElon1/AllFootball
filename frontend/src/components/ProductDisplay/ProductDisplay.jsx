@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './ProductDisplay.css'
 import { ShopContext } from '../../Context/ShopContext'
+import { useNavigate } from 'react-router-dom'
 
 const ProductDisplay = ({product, isLogged}) => {
     const {addCart} = useContext(ShopContext)
     const [mainImage, setMainImage] = useState(product.images[0])
+    const navigate = useNavigate()
 
     const handleImageClick = (image) => {
       setMainImage(image)
@@ -19,10 +21,18 @@ const ProductDisplay = ({product, isLogged}) => {
       }
     }
 
+    const handleBackButton = () => {
+      console.log('Back button is pressed')
+      navigate(-1)
+    }
+
 
   return (
     <div className='productdisplay'>
       <div className="display-left">
+      <div className="display-backButton">
+        <button onClick={handleBackButton}>Back</button>
+      </div>
       <div className="product-mainImage">
         <img src={mainImage}></img>
       </div>
