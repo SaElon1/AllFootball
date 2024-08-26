@@ -1,0 +1,22 @@
+.Notification {
+    font-size: 20px;
+    color: white;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: fixed;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.Notification.success {
+    background-color: green;
+}
+
+.Notification.error {
+    background-color: red;
+}
+
