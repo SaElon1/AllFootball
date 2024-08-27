@@ -95,7 +95,11 @@ const ShopContextProvider = (props) => {
       return cartProducts
     }
 
-    const value = {getCartItems,allproducts,cartItems,addCart,removeFromCart,offerproducts, getCartProducts}
+    const clearUserCart = async () => {
+      await productService.clearCart()
+    }
+
+    const value = {getCartItems,allproducts,cartItems,addCart,removeFromCart,offerproducts, getCartProducts, clearUserCart}
     return (
         <div>
         <ShopContext.Provider value={value}>

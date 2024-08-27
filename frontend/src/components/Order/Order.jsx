@@ -4,12 +4,13 @@ import { UserContext } from '../../Context/UserContext'
 import { useContext } from 'react'
 import './Order.css'
 import Notification from '../Notification/Notification'
-
+import { ShopContext } from '../../Context/ShopContext'
 
 const Order = ({cartitems, totalPrice}) => {
     const [notficationMessage, setNotificationMessage] = useState(null)
     const [notificationStatus, setNotificationStatus] = useState('success')
     const {user} = useContext(UserContext)
+    const {clearUserCart} = useContext(ShopContext)
 
     const placeOrder = async () => {
         if (window.confirm("Confirm order")) {
@@ -25,6 +26,7 @@ const Order = ({cartitems, totalPrice}) => {
                 setTimeout(() => {
                     setNotificationMessage(null)
                 }, 4000)
+                clearUserCart()
 
             }catch(error){
                 console.error('Error in making the order', error)
