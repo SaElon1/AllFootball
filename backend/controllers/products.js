@@ -149,6 +149,29 @@ productRouter.get('/getcartitems', async(req, res, next) => {
     }
 })
 
+productRouter.post('/clearCart', async(req, res, next) => {
+    try{
+        const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET)
+    if (!decodedToken.id) {
+        return res.status(401).json({error: 'Token invalid'})
+    }
+        const user = await User.findById(decodedToken.id)
+
+        let cart = {}
+        for (let i = 0; i < 100; i++) {
+            cart[i] = 0
+        }
+
+        user.cartItems = cart
+        await user.save()
+
+        res.status(200)
+
+    }catch(error){
+        next(error)
+    }
+})
+
 
 
 

@@ -114,6 +114,21 @@ const getOrderHistory = async () => {
     }
 }
 
+const clearCart = async (cart) => {
+    try{
+        if(!token) {
+            throw new Error('Token is missing')
+        }
+        const config = {
+            headers : {Authorization: token}
+        }
+        const response = axios.post(`${baseurl}/clearCart`,cart, config)
+        return response.data
+    }catch(error){
+        console.error(error)
+    }
+}
 
-export default {getAll, getOfferProducts, addToCart,setToken, removeFromCart,getCartItems, placeOrder, getOrderHistory}
+
+export default {getAll, getOfferProducts, addToCart,setToken, removeFromCart,getCartItems, placeOrder, getOrderHistory, clearCart}
 
