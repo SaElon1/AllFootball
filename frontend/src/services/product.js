@@ -83,7 +83,7 @@ const getCartItems = async () => {
     }
 }
 
-const placeOrder = async (newObject) => {
+const placeNewOrder = async (newObject) => {
     try {
         if (!token) {
             throw new Error ('Token is missing')
@@ -130,5 +130,5 @@ const clearCart = async (cart) => {
 }
 
 
-export default {getAll, getOfferProducts, addToCart,setToken, removeFromCart,getCartItems, placeOrder, getOrderHistory, clearCart}
+export default {getAll, getOfferProducts, addToCart,setToken, removeFromCart,getCartItems, placeNewOrder, getOrderHistory, clearCart}
 
