@@ -62,7 +62,7 @@ if (order) {
                     <img src={p.images[0]} alt=''></img>
                     <p>{p.name}</p>
                     <p>Price: {p.new_price}€</p>
-                    <p>Size:</p>
+                    <p>Size: {p.size}</p>
                     <button onClick={()=>{removeFromCart(p.id)}}>REMOVE ITEM</button>
                     </div>
             }
