@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import './CartItems.css'
 import { ShopContext } from '../../Context/ShopContext'
 import Order from '../Order/Order'
+import cartLogo from '../Assets/cart_logo.png'
 
 const CartItems = () => {
-const {allproducts, cartItems, removeFromCart, getCartProducts, order} = useContext(ShopContext)
+const {allproducts, cartItems, removeFromCart, getCartProducts, order, getCartItems} = useContext(ShopContext)
 const [totalPrice, setTotalPrice] = useState(0)
+const [cartIsEmpty, setCartIsEmpty] = useState(true)
 
 useEffect(() => {
     const total = allproducts.reduce((sum, p) =>{
@@ -17,12 +19,34 @@ useEffect(() => {
     setTotalPrice(total)
 }, [allproducts, cartItems])
 
+useEffect(() => {
+    try{
+        const totalCartItems = getCartItems()
+        if(totalCartItems === 0){
+            setCartIsEmpty(true)
+        }else{
+            setCartIsEmpty(false)
+        }
+    }catch(error){
+        console.log(error)
+    }
+},[])
+
 if (order) {
     console.log('From cartItems', order)
     return <Order totalPrice={totalPrice} cartitems={getCartProducts(cartItems)}></Order>
 }
 
   return (
+    <div>
+    {cartIsEmpty && (
+        <div className='cartitems-empty'>
+            <h1>Shopping cart is empty</h1>
+            <img src={cartLogo} alt="" />
+        </div>
+    )
+    }
+    {!cartIsEmpty && (
     <div className='cartitems'>
         <div className="cart-orderInfo">
             <p>Product</p>
@@ -53,6 +77,8 @@ if (order) {
         <h2>{totalPrice}€</h2>
         </div>
         <Order totalPrice={totalPrice} cartitems={getCartProducts(cartItems)}></Order>
+    </div>
+    )}
     </div>
   )
 }
