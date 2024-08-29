@@ -30,9 +30,11 @@ orderRouter.post('/order', async(req, res, next) => {
 
 
     const savedOrder = await newOrder.save()
+    const returnedOrder = await savedOrder.populate('products')
+
     user.orders = user.orders.concat(newOrder._id)
     await user.save()
-    res.status(200).json(savedOrder)
+    res.status(200).json(returnedOrder)
     }catch(error){
         next(error)
     }
