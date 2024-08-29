@@ -52,4 +52,40 @@
     margin-top: 20px;
 }
 
+.cartitems-empty{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px auto;
+    gap: 20px;
+    text-align: center;
+    max-width: 500px;
+}
+
+.cartitems-empty img{
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.cartitems-empty h1{
+    font-size: 28px;
+    margin: 0;
+    color: #333;
+}
+
+.cartitems-empty a{
+    text-decoration: none;
+    color: #179301;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+
+}
+.cartitems-empty a:hover {
+    color: #00ff8cb9;
+}
+
+
+
 

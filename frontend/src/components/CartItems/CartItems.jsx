@@ -3,6 +3,7 @@ import './CartItems.css'
 import { ShopContext } from '../../Context/ShopContext'
 import Order from '../Order/Order'
 import cartLogo from '../Assets/cart_logo.png'
+import { Link } from 'react-router-dom'
 
 const CartItems = () => {
 const {allproducts, cartItems, removeFromCart, getCartProducts, order, getCartItems} = useContext(ShopContext)
@@ -43,6 +44,7 @@ if (order) {
         <div className='cartitems-empty'>
             <h1>Shopping cart is empty</h1>
             <img src={cartLogo} alt="" />
+            <Link to={'/'}>Check out our latest offers here!</Link>
         </div>
     )
     }
