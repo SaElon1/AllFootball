@@ -5,6 +5,15 @@ import footballer from '../Assets/3D_footballer1.png'
 import arrow_img from '../Assets/arrow.png'
 
 const Hero = () => {
+
+    const scrollToOffers = () => {
+        const offersSection = document.getElementById('offers-section')
+        if(offersSection){
+            offersSection.scrollIntoView({behavior: 'smooth'})
+        }
+    }
+
+
   return (
     <div className='hero'>
         <div className="hero-left">
@@ -19,7 +28,7 @@ const Hero = () => {
         </div>
         <div className="hero-offersButton">
             <div>Latest Offers</div>
-            <img src={arrow_img} alt="" />
+            <img src={arrow_img} alt="" onClick={scrollToOffers} />
         </div>
         </div>
         <div className="hero-right">
