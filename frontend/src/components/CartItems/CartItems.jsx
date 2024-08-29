@@ -4,7 +4,7 @@ import { ShopContext } from '../../Context/ShopContext'
 import Order from '../Order/Order'
 
 const CartItems = () => {
-const {allproducts, cartItems, removeFromCart, getCartProducts} = useContext(ShopContext)
+const {allproducts, cartItems, removeFromCart, getCartProducts, order} = useContext(ShopContext)
 const [totalPrice, setTotalPrice] = useState(0)
 
 useEffect(() => {
@@ -16,6 +16,11 @@ useEffect(() => {
     }, 0)
     setTotalPrice(total)
 }, [allproducts, cartItems])
+
+if (order) {
+    console.log('From cartItems', order)
+    return <Order totalPrice={totalPrice} cartitems={getCartProducts(cartItems)}></Order>
+}
 
   return (
     <div className='cartitems'>
