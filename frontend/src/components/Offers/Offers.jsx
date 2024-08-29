@@ -6,7 +6,7 @@ import { ShopContext } from '../../Context/ShopContext'
 const Offers = () => {
   const {offerproducts} = useContext(ShopContext)
   return (
-    <div className='offers'>
+    <div className='offers' id='offers-section'>
         <h1>NEW OFFERS</h1>
         <hr />
         <div className="offer">
