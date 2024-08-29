@@ -1,7 +1,6 @@
 import React, {createContext, useState,useEffect, useContext} from "react";
 import productService from "../services/product";
 import { UserContext } from "./UserContext";
-import product from "../services/product";
 
 export const ShopContext = createContext(null)
 
@@ -17,6 +16,7 @@ const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({})
     const [allproducts, setallproducts] = useState([])
     const [offerproducts, setOfferproducts] = useState([])
+    const [order, setOrder] = useState(null)
 
     const {isLogged} = useContext(UserContext)
 
@@ -58,6 +58,11 @@ const ShopContextProvider = (props) => {
       fetchCartItems()
     },[isLogged])
 
+    useEffect(() => {
+      console.log('Order updated:', order);
+      setOrder(order)
+    }, [order]);
+
     console.log(allproducts)
     console.log(cartItems)
 
@@ -70,6 +75,16 @@ const ShopContextProvider = (props) => {
     const removeFromCart = async (itemId) => {
         setCartItems((prevCart) => ({...prevCart,[itemId]:prevCart[itemId]-1}))
         await productService.removeFromCart(itemId)
+    }
+
+    const placeOrder = async (orderDetails) => { 
+      try {
+        const newOrder = await productService.placeNewOrder(orderDetails)
+        setOrder(newOrder)
+        return newOrder
+      }catch(error){
+        console.error(error)
+      }
     }
 
     const getCartItems = () => {
@@ -99,7 +114,7 @@ const ShopContextProvider = (props) => {
       await productService.clearCart()
     }
 
-    const value = {getCartItems,allproducts,cartItems,addCart,removeFromCart,offerproducts, getCartProducts, clearUserCart}
+    const value = {getCartItems,allproducts,cartItems,addCart,removeFromCart,offerproducts, getCartProducts, clearUserCart, order, setOrder,placeOrder}
     return (
         <div>
         <ShopContext.Provider value={value}>
