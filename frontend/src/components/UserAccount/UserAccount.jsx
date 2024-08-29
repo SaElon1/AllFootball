@@ -7,6 +7,10 @@ import OrderData from '../OrderData/OrderData'
 const UserAccount = ({handleLogOut}) => {
   const {user} = useContext(UserContext)
   const [orderHistory, setOrderHistory] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const ordersPerPage = 4
+
+
   const handleClick = () => {
     handleLogOut()
   }
@@ -23,6 +27,23 @@ const UserAccount = ({handleLogOut}) => {
   fetchOrderHistory()
   }, [])
 
+  const totalPages = Math.ceil(orderHistory.length / ordersPerPage)
+  const indexOfLast = currentPage * ordersPerPage
+  const indexOfFirst = indexOfLast - ordersPerPage
+  const currentOrders = orderHistory.slice(indexOfFirst, indexOfLast)
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1)
+    }
+  }
+
 
   return (
     <div className='UserAccount'>
@@ -32,9 +53,18 @@ const UserAccount = ({handleLogOut}) => {
         </div>
         <div className="UserAccount-orderHistory">
           <h2>Order History</h2>
-          {orderHistory.map((order, k) => (
+          {currentOrders.map((order, k) => (
             <OrderData key={k} totalPrice={order.totalPrice} date={order.date} products={order.products}></OrderData>
           ))}
+        </div>
+        <div className="UserAccount-orderpages">
+          <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <span>Page {currentPage} of {totalPages}</span>
+          <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+            Next
+          </button>
         </div>
         </div>
    
