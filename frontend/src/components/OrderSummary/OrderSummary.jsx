@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import './OrderSummary.css'
 
 const OrderSummary = ({order}) => {
   console.log(order)
@@ -15,7 +17,7 @@ const OrderSummary = ({order}) => {
             ))}
         </div>
         <div className="ordersummary-link">
-            <p>While you are waiting, feel free to check out our latest offers</p>
+            <Link to='/'>While you are waiting, feel free to check out our latest offers</Link>
         </div>
     </div>
   )
