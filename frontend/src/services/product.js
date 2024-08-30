@@ -7,15 +7,18 @@ let token = null
 const setToken = newToken => {
     token = `Bearer${newToken}`
 }
+const loggedIn = window.localStorage.getItem('loggedAllfootballUser')
 
 axios.interceptors.response.use(
     response => response,
     error => {
+        if(loggedIn){
         if(error.response && error.response.status === 401){
             alert('Session expired. Please log in again')
             window.localStorage.removeItem('loggedAllfootballUser')
             window.location.href = '/login'
         }
+    }
 
         return Promise.reject(error)
     }

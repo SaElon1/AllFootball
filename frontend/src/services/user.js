@@ -3,13 +3,17 @@ const baseurl = "http://localhost:3001/api/user"
 
 
 const handleApiError = (error) => {
-    if (error.response && error.response.status === 401) {
-        alert('Session has expired. Please log in again. ')
-        
-        window.location.href = '/login'
+    const loggedIn = window.localStorage.getItem('loggedAllfootballUser')
+    if(error.response) {
+        if (error.response.status === 401){
+            if (loggedIn) {
+                alert('Session has expired. Please log in again. ')
+                window.location.href = '/login'
+            }else {
+                alert('Invalid email or password')            }
+        }
     }else {
         console.error('API error', error)
-        alert('An error occured. Please try again.')
     }
 }
 
