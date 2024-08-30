@@ -25,20 +25,31 @@ import productService from '../services/product'
   const handleSubmit = async (event) => {
     event.preventDefault()
     if(!isLogin){
-    const user = await userService.createUser(userInformation)
+      try{
+        const user = await userService.createUser(userInformation)
       alert('User created successfully')
       setUserInformation(resetUserInformation)
       console.log(user)
+      }catch(exception){
+        console.log('Error in creating user')
+      }
     
   }else {
-    const user = await userService.login(userInformation)
-      console.log(user)
-      alert('Logged in successfully')
-      setUserInformation(resetUserInformation)
-      setUser(user)
-      window.localStorage.setItem('loggedAllfootballUser', JSON.stringify(user))
-      setIsLogged(true)
-      productService.setToken(user.token)
+    try{
+      const user = await userService.login(userInformation)
+      if (user){
+        console.log(user)
+        alert('Logged in successfully')
+        setUserInformation(resetUserInformation)
+        setUser(user)
+        window.localStorage.setItem('loggedAllfootballUser', JSON.stringify(user))
+        setIsLogged(true)
+        productService.setToken(user.token)
+      }
+    }catch(exception){
+      console.log("Invalid password or email")
+      alert('Invalid email or password. Please try again!')
+    }
   }
 }
 
