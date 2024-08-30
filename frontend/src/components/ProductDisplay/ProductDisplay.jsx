@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import './ProductDisplay.css'
 import { ShopContext } from '../../Context/ShopContext'
 import { useNavigate } from 'react-router-dom'
+import Notification from '../Notification/Notification'
 
 const ProductDisplay = ({product, isLogged}) => {
     const {addCart} = useContext(ShopContext)
     const [mainImage, setMainImage] = useState(product.images[0])
+    const [notificationMessage, setNotificationMessage] = useState(null)
     const navigate = useNavigate()
 
     const handleImageClick = (image) => {
@@ -16,6 +18,10 @@ const ProductDisplay = ({product, isLogged}) => {
       console.log(`From display ${product.id}`)
       if(isLogged) {
         addCart(product.id)
+        setNotificationMessage('Product added to cart!')
+        setTimeout(() => {
+          setNotificationMessage(null)
+      }, 2000)
       }else{
         alert("Please login first")
       }
@@ -57,6 +63,7 @@ const ProductDisplay = ({product, isLogged}) => {
         <div className="product-oldprice">{product.old_price}€</div>
         </div>
         <button onClick={handleCartClick}>ADD TO CART</button>
+        <Notification message={notificationMessage} type='success'></Notification>
         </div>
     </div>
   )
