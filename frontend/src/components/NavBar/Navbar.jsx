@@ -16,6 +16,11 @@ const Navbar = ({isLogged, user}) => {
         menuRef.current.classList.toggle('nav-menu-visible')
         event.target.classList.toggle('open')
     }
+
+    const resetMenu = () => {
+        setMenu("")
+    }
+
     return (
         <div className='navbar'>
             <div className="nav-logo">
@@ -30,8 +35,8 @@ const Navbar = ({isLogged, user}) => {
                 <li onClick={()=>{setMenu("balls&pads")}}><Link style={{textDecoration: 'none'}} to='/balls&pads'>Balls & Pads</Link>{menu ==="balls&pads"?<hr/>:<></>}</li>
             </ul>
             <div className="nav-login-cart">
-                <Link to='/login'><button>{isLogged ? user.name : "Login"}</button></Link>
-                <Link to='/cart'><img src={cart_logo} alt=""></img></Link>
+                <Link to='/login' onClick={resetMenu}><button>{isLogged ? user.name : "Login"}</button></Link>
+                <Link to='/cart' onClick={resetMenu}><img src={cart_logo} alt=""></img></Link>
                 <div className="nav-cart-count">{getCartItems()}</div>
             </div>
         </div>
