@@ -150,10 +150,11 @@
         display: block;
         width: 35px;
         height: 60px;
-        rotate: -90deg;
         transition: 0.5s;
         cursor: pointer;
+        background-color: white;
     }
+
     .nav-menu{
         display: none;
         height: 70px;
@@ -166,9 +167,7 @@
     .nav-menu-visible{
         display: flex;
     }
-    .nav-dropdown.open{
-        transform: rotate(90deg);
-    }
+    
 }
 @media(max-width:500px){
     .navbar{
