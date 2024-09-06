@@ -1,5 +1,5 @@
 .cartitems {
-    margin: 100px 170px
+    margin: 50px 170px;
 }
 
 .cartitems hr {
@@ -17,7 +17,6 @@
     color: black;
     font-size: 18px;
     font-weight: 600;
-
 }
 
 .cart-item {
@@ -46,6 +45,10 @@
     font-weight: 600;
     color: white;
     cursor: pointer;
+    transition: background-color 0.3 ease;
+}
+.cart-item button:hover{
+    background-color: #ff3333;
 }
 
 .cart-totalprice {
@@ -86,6 +89,57 @@
     color: #00ff8cb9;
 }
 
+@media(max-width: 900px) {
+    .cartitems {
+        margin: 30px 120px;
+    }
+    .cart-orderInfo{
+        font-size: 16px;
+        gap: 15px;
+    }
+
+    .cart-item {
+        gap: 15px;
+    }
+    .cart-item img{
+        width: 70px;
+    }
+    .cart-item button{
+        width: 100px;
+        font-size: 12px;
+    }
+    .cart-totalprice h1, .cart-totalprice h2 {
+        font-size: 20px;
+    }
+    .cart-totalprice p{
+        font-size: 16px;
+    }
+}
+
+@media(max-width: 650px){
+    .cartitems{
+        margin: 20px 40px;
+    }
+    .cart-item p{
+        font-size: 14px;
+    }
+}
+
+@media(max-width: 480px){
+    .cart-item p{
+        font-size: 12px;
+    }
+
+    .cart-item button{
+        width: 70px;
+        font-size: 10px;
+    }
+}
+@media(max-width: 400px){
+    .cartitems{
+        margin: 5px 15px;
+    }
+}
 
 
 

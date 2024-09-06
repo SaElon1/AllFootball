@@ -3,7 +3,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 40px 20px;
     gap: 50px;
+    margin-top: auto;
 }
 
 .footer-logo img {
@@ -11,23 +13,11 @@
 }
 .footer-logo {
     align-items: center;
+    justify-content: center;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
-
-.footer-links {
-    display: flex;
-    list-style: none;
-    gap: 50px;
-    color: green;
-    font-size: 20px;
-}
-
-.footer-links li {
-    cursor: pointer;
-}
-
 .footer-icons {
     display: flex;
     flex-wrap: wrap;
@@ -37,8 +27,7 @@
 }
 
 .icons-container {
-    padding: 10px;
-    padding-bottom: 6px;
+    padding: 12px;
     background: rgb(20, 113, 20);
     border: 1px solid green;
     border-radius: 50%;
@@ -50,40 +39,41 @@
 @media (max-width: 800px) {
     .footer{
         gap: 30px;
-        padding: 30px 10px;
-        height: auto;
+        padding: 30px 15px;
     }
 
     .footer-logo img{
         width: 120px;
     }
 
-    .footer-links {
-        gap: 20px;
-        font-size: 16px;
-    }
     .footer-icons {
-        gap: 10px;
+        gap: 15px;
     }
     .icons-container{
-        padding: 8px;
+        padding: 10px;
     }
 
     .icons-container img{
-        width: 40px;
+        width: 35px;
     }
 }
 
 @media(max-width: 500px) {
     .footer{
         gap: 20px;
-        padding: 20px 5px;
+        margin-right: 20px;
+    }
+    .footer-logo{
+        gap: 15px;
     }
     .footer-logo img{
         width: 100px;
     }
+    .footer-icons {
+        gap: 10px;
+    }
     .icons-container {
-        padding: 6px;
+        padding: 8px;
     }
     .icons-container img{
         width: 30px;
