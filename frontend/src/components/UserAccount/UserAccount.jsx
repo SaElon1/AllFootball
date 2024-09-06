@@ -47,10 +47,10 @@ const UserAccount = ({handleLogOut}) => {
 
   return (
     <div className='UserAccount'>
-        <h1> Welcome, {user.name}</h1>
         <div className="UserAccount-logout">
             <button onClick={handleClick}>Log Out</button>
         </div>
+        <h1> Welcome, {user.name}</h1>
         <div className="UserAccount-orderHistory">
           <h2>Order History</h2>
           {currentOrders.map((order, k) => (

@@ -70,3 +70,23 @@
 .ordersummary-link p:hover {
     color: #800080;
 }
+
+@media (max-width: 1080px){
+    .ordersummary{
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 800px) {
+    .ordersummary{
+        max-width: 350px;
+    }
+    .ordersummary h2{
+        font-size: 20px;
+    }
+}
+@media (max-width: 500px){
+    .ordersummary{
+        max-width: 250px;
+    }
+}

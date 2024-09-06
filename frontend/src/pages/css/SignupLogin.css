@@ -1,16 +1,18 @@
 .signuplogin {
     width: 100%;
-    height: 200vh;
+    height: auto;
     background: #9fffb4;
     padding-top: 100px;
 }
 
 .signuplogin-container {
-    width: 600px;
-    height: 600px;
+    width: 90%;
+    max-width: 600px;
+    height: auto;
     background: white;
     margin: auto;
     padding: 40px 60px;
+    border-radius: 10px;
 }
 
 .signuplogin-container h1{
@@ -37,9 +39,9 @@
 }
 
 .signuplogin button{
-    width: 100%;
+    width: 20%;
     height: 60px;
-    font-size: 28px;
+    font-size: 24px;
     color: green;
     margin-top: 30px;
     cursor: pointer;
@@ -56,4 +58,39 @@
     color: green;
     font-weight: 500;
     cursor: pointer;
+}
+
+@media (max-width: 800px) {
+    .signuplogin-container {
+        padding: 30px 20px;
+    }
+
+    .signuplogin-container h1 {
+        font-size: 24px;
+    }
+    .signuplogin-fields input {
+        height: 45px;
+        width: 90%;
+        font-size: 16px;
+    }
+    .signuplogin button {
+        height: 45px;
+    }
+}
+
+@media (max-width: 500px) {
+    .signuplogin-container{
+        padding: 20px 15px;
+    }
+    .signuplogin-container h1{
+        font-size: 21px;
+    }
+    .signuplogin-fields input {
+        height: 40px;
+        font-size: 14px;
+    }
+    .signuplogin button{
+        height: 40px;
+        font-size: 14px;
+    }
 }
