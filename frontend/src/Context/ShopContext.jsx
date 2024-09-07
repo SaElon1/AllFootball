@@ -111,7 +111,12 @@ const ShopContextProvider = (props) => {
     }
 
     const clearUserCart = async () => {
-      await productService.clearCart()
+      try{
+        await productService.clearCart()
+        setCartItems(getCart(allproducts))
+      }catch(error){
+        console.error('Error in clearing cart', error)
+      }
     }
 
     const value = {getCartItems,allproducts,cartItems,addCart,removeFromCart,offerproducts, getCartProducts, clearUserCart, order, setOrder,placeOrder}
