@@ -3,6 +3,8 @@ import './css/SignupLogin.css'
 import userService from '../services/user'
 import UserAccount from '../components/UserAccount/UserAccount'
 import productService from '../services/product'
+import Notification from '../components/Notification/Notification'
+
  const SignupLogin = ({setIsLogged,user, setUser, handleLogOut}) => {
   const [userInformation, setUserInformation] = useState({
     name:"",
@@ -10,6 +12,8 @@ import productService from '../services/product'
     password:""
   })
   const [isLogin, setIsLogin] = useState(false)
+  const [notificationMessage, setNotificationMessage] = useState(null)
+  const [notificationType, setNotificationType] = useState("success")
 
   const resetUserInformation = {
     name:"",
@@ -25,21 +29,43 @@ import productService from '../services/product'
   const handleSubmit = async (event) => {
     event.preventDefault()
     if(!isLogin){
-      try{
+      if(userInformation.name === "" || userInformation.email === "" || userInformation.password === ""){
+        setNotificationMessage('Information missing. Please try again!')
+        setNotificationType("error")
+        setTimeout(() => {
+          setNotificationMessage(null)
+        }, 3000)
+        return     
+      }
+      else {
+        try{
         const user = await userService.createUser(userInformation)
       alert('User created successfully')
+      setNotificationMessage('User created succesfully!')
+      setNotificationType('success')
+      setTimeout(() => {
+        setNotificationMessage(null)
+      }, 3000)
       setUserInformation(resetUserInformation)
       console.log(user)
       }catch(exception){
         console.log('Error in creating user')
       }
+    }
     
   }else {
+    if(userInformation.email === "" || userInformation.password === ""){
+      setNotificationMessage('Information missing. Please try again!')
+      setNotificationType("error")
+      setTimeout(() => {
+        setNotificationMessage(null)
+      }, 3000)
+      return     
+    }else {
     try{
       const user = await userService.login(userInformation)
       if (user){
         console.log(user)
-        alert('Logged in successfully')
         setUserInformation(resetUserInformation)
         setUser(user)
         window.localStorage.setItem('loggedAllfootballUser', JSON.stringify(user))
@@ -49,8 +75,14 @@ import productService from '../services/product'
     }catch(exception){
       console.log("Invalid password or email")
       alert('Invalid email or password. Please try again!')
+      setNotificationMessage('Invalid email or password. Please try again!')
+      setNotificationType("error")
+      setTimeout(() => {
+        setNotificationMessage(null)
+      }, 3000)
     }
   }
+}
 }
 
   const toggleForm = () => {
@@ -94,6 +126,7 @@ import productService from '../services/product'
         </form>
       </div>
       )}
+      <Notification message={notificationMessage} type={notificationType}></Notification>
     </div>
   )
           }
