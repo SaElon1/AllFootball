@@ -40,8 +40,7 @@ import Notification from '../components/Notification/Notification'
       else {
         try{
         const user = await userService.createUser(userInformation)
-      alert('User created successfully')
-      setNotificationMessage('User created succesfully!')
+      setNotificationMessage('User created succesfully. Please log in now!')
       setNotificationType('success')
       setTimeout(() => {
         setNotificationMessage(null)
