@@ -4,12 +4,12 @@
     justify-content: center;
     align-items: center;
     padding: 40px 20px;
-    gap: 50px;
+    gap: 30px;
     margin-top: auto;
 }
 
 .footer-logo img {
-    width: 150px;
+    width: 100px;
 }
 .footer-logo {
     align-items: center;
@@ -34,6 +34,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.icons-container img {
+    width: 40px;
 }
 
 @media (max-width: 800px) {
@@ -67,7 +70,7 @@
         gap: 15px;
     }
     .footer-logo img{
-        width: 100px;
+        width: 80px;
     }
     .footer-icons {
         gap: 10px;
