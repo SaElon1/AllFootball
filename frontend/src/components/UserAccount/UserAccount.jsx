@@ -53,11 +53,16 @@ const UserAccount = ({handleLogOut}) => {
         <h1> Welcome, {user.name}</h1>
         <div className="UserAccount-orderHistory">
           <h2>Order History</h2>
-          {currentOrders.map((order, k) => (
+          {orderHistory.length === 0 ? (
+            <p>You have yet to make an order <a href="/">Check out our latest offers here!</a></p>
+          ) : (
+          currentOrders.map((order, k) => (
             <OrderData key={k} totalPrice={order.totalPrice} date={order.date} products={order.products}></OrderData>
-          ))}
+          ))
+          )}
         </div>
-        <div className="UserAccount-orderpages">
+        {orderHistory.length !== 0 && (
+          <div className="UserAccount-orderpages">
           <button onClick={handlePreviousPage} disabled={currentPage === 1}>
             Previous
           </button>
@@ -66,6 +71,8 @@ const UserAccount = ({handleLogOut}) => {
             Next
           </button>
         </div>
+
+        )}
         </div>
    
   )
