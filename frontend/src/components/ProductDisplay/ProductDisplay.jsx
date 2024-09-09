@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Notification from '../Notification/Notification'
 
 const ProductDisplay = ({product, isLogged}) => {
-    const {addCart} = useContext(ShopContext)
+    const {addCart, getCartProducts, cartItems} = useContext(ShopContext)
     const [mainImage, setMainImage] = useState(product.images[0])
     const [notificationMessage, setNotificationMessage] = useState(null)
     const navigate = useNavigate()
@@ -16,12 +16,17 @@ const ProductDisplay = ({product, isLogged}) => {
 
     const handleCartClick = () => {
       console.log(`From display ${product.id}`)
+      const cartProducts = getCartProducts(cartItems)
       if(isLogged) {
-        addCart(product.id)
-        setNotificationMessage('Product added to cart!')
-        setTimeout(() => {
-          setNotificationMessage(null)
-      }, 2000)
+        if (cartProducts.some(cartProduct => cartProduct.id === product.id)){
+          alert('Item already added to cart')
+        }else{
+          addCart(product.id)
+          setNotificationMessage('Product added to cart!')
+          setTimeout(() => {
+            setNotificationMessage(null)
+        }, 2000)
+        }
       }else{
         alert("Please login first")
       }
@@ -31,7 +36,6 @@ const ProductDisplay = ({product, isLogged}) => {
       console.log('Back button is pressed')
       navigate(-1)
     }
-
 
   return (
     <div className='productdisplay'>
