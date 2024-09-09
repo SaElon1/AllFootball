@@ -195,9 +195,13 @@
         width: 16px;
         height: 16px;
     }
+}
 
-
-
+@media(max-width:400px) {
+   .nav-menu {
+    gap: 25px;
+    width: 90%;
+   }
 }
 
 
