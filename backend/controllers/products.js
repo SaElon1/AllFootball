@@ -63,22 +63,42 @@ productRouter.delete('/removeproduct', async(req, res) => {
     res.status(204).end()
 })
 
-productRouter.put('/changeproduct', async(req, res) => {
-    const body = req.body
+productRouter.put('/:id', upload.array('images', 10), async(req, res) => {
+    try{
+        const productId = req.params.id
+        const body = req.body
 
-    const product = {
-        name: body.name,
-        description: body.description,
-        category: body.category,
-        image: body.image,
-        new_price: body.new_price,
-        old_price: body.old_price
-    }
+        const existingProduct = await Product.findById(productId)
+        if(!existingProduct){
+            return res.status(404).json({error: 'Product not found'})
+        }
 
-    Product.findByIdAndUpdate(req.params.id, product, {new: true})
-    .then(updatedProduct => {
+        let imageUrls = existingProduct.images
+        if (req.files && req.files.length > 0) {
+            const uploadedImageUrls = req.files.map(file => `http://localhost:${config.PORT}/images/${file.filename}`)
+            imageUrls = uploadedImageUrls
+        }
+        const product = {
+            name: body.name || existingProduct.name,
+            description: body.description || existingProduct.description,
+            category: body.category || existingProduct.category,
+            size: body.size || existingProduct.size,
+            images: imageUrls,
+            new_price: body.new_price || existingProduct.new_price,
+            old_price: body.old_price || existingProduct.old_price
+        }
+
+        const updatedProduct = await Product.findByIdAndUpdate(req.params.id, product, {new: true})
+        console.log(updatedProduct)
+        if(!updatedProduct) {
+            return res.status(404).json({error: 'Product not found'})
+        }
+    
         res.json(updatedProduct)
-    })
+
+    }catch(error){ 
+        
+    }
 })
 
 productRouter.get('/allproducts', async (req, res) => {
