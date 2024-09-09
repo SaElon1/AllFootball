@@ -20,10 +20,11 @@
 
 .offer {
     display: flex;
-    margin-top: 50px;
+    margin-top: 60px;
     gap: 30px;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 1280px) {
