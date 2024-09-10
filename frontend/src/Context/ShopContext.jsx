@@ -40,7 +40,7 @@ const ShopContextProvider = (props) => {
         try{
           if(isLogged) {
             const cart = await productService.getCartItems()
-            if(cart == undefined) {
+            if(cart === undefined) {
               console.log('Problem in cart rendering')
               return
             }else{
