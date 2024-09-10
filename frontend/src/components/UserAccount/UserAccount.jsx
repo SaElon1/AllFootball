@@ -27,10 +27,12 @@ const UserAccount = ({handleLogOut}) => {
   fetchOrderHistory()
   }, [])
 
-  const totalPages = Math.ceil(orderHistory.length / ordersPerPage)
+  const reversedOrderHistory = [...orderHistory].reverse()
+
+  const totalPages = Math.ceil(reversedOrderHistory.length / ordersPerPage)
   const indexOfLast = currentPage * ordersPerPage
   const indexOfFirst = indexOfLast - ordersPerPage
-  const currentOrders = orderHistory.slice(indexOfFirst, indexOfLast)
+  const currentOrders = reversedOrderHistory.slice(indexOfFirst, indexOfLast)
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
