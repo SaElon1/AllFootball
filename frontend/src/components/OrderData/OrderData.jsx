@@ -22,7 +22,6 @@ const OrderData = ({totalPrice, date, products}) => {
             {products.map((product, k) => (
               <div key={k}>
               <img src={product.images[0]} alt="" />
-              <p>{product.name}</p>
             </div>
             ))}
           </div>
