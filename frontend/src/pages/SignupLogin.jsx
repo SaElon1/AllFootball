@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import './css/SignupLogin.css'
 import userService from '../services/user'
 import UserAccount from '../components/UserAccount/UserAccount'
@@ -73,7 +73,6 @@ import Notification from '../components/Notification/Notification'
       }
     }catch(exception){
       console.log("Invalid password or email")
-      alert('Invalid email or password. Please try again!')
       setNotificationMessage('Invalid email or password. Please try again!')
       setNotificationType("error")
       setTimeout(() => {
