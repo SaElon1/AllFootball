@@ -7,13 +7,19 @@ let token = null
 const setToken = newToken => {
     token = `Bearer${newToken}`
 }
+
+const loggedIn = window.localStorage.getItem('loggedAllfootballUser')
 axios.interceptors.response.use(
     response => response,
     error => {
             if(error.response && error.response.status === 401){
+                if(loggedIn){
                 alert('Session expired. Please log in again')
                 window.localStorage.removeItem('loggedAllfootballUser')
                 window.location.href = '/login'
+                }
+            }else{
+                alert('Something went wrong')
             }
 
         return Promise.reject(error)
@@ -21,13 +27,23 @@ axios.interceptors.response.use(
 )
 
 const getAll = async () => {
-    const response = await axios.get(`${baseurl}/allproducts`)
-    return response.data
+    try{
+        const response = await axios.get(`${baseurl}/allproducts`)
+        return response.data
+
+    }catch(error){
+        console.error(error)
+    }
 }
 
 const getOfferProducts = async () => {
-    const response = await axios.get(`${baseurl}/offerProducts`)
-    return response.data
+    try{
+        const response = await axios.get(`${baseurl}/offerProducts`)
+        return response.data
+        
+    }catch(error){
+        console.error(error)
+    }
 }
 
 const addToCart = async itemId => {
