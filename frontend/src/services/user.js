@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseurl = "http://localhost:3001/api/user"
+const baseurl = "/api/user"
 
 
 const handleApiError = (error) => {
