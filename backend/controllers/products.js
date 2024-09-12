@@ -58,7 +58,7 @@ productRouter.post('/addproduct',upload.array('images',10), async (req,res)=> {
     console.log(product)
 })
 
-productRouter.delete('/removeproduct', async(req, res) => {
+productRouter.delete('/removeproduct/:id', async(req, res) => {
     await Product.findByIdAndDelete(req.params.id)
     res.status(204).end()
 })
