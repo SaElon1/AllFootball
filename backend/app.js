@@ -18,11 +18,6 @@ mongoose.connect(config.MONGODB)
         console.error(`error connecting to MONGODB ${config.MONGODB}`)
     })
 
-    //This is only for testing the app
-app.get("/", (req, res) =>{
-    res.send("Backend is running!")
-})
-
 //Image storing
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -44,7 +39,7 @@ app.post("/upload", upload.array("images", 10),(req,res) => {
 })
 })
 
-
+app.use(express.static('build'))
 
 app.use(express.json())
 app.use(cors())
