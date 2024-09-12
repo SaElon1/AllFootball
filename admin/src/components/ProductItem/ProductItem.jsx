@@ -42,10 +42,20 @@ const ProductItem = ({product, onUpdate}) => {
         }
     }
 
+    const handleDeleteButton  = async () => {
+      try{
+        if(window.confirm("Delete product?")) {
+          const remove = await productService.removeProduct(product._id)
+        }
+      }catch(error){
+        console.error("Error deleting the product", error)
+      }
+    }
+
   return (
     <div className="product-item">
       {isEditing ? (
-        <div>
+        <div className='product-item-inputform'>
           <input
             type="text"
             name="name"
@@ -92,13 +102,13 @@ const ProductItem = ({product, onUpdate}) => {
           <button onClick={() => setIsEditing(false)}>Cancel</button>
         </div>
       ) : (
-        <div>
+        <div className='product-item-info'>
           <p>Name: {product.name}</p>
-          <p>Description: {product.description}</p>
-          <p>Category: {product.category}</p>
-          <img src={product.images[0]} alt={product.name} />
-          <p>Price: {product.new_price}</p>
           <button onClick={() => setIsEditing(true)}>Edit</button>
+          <button onClick={handleDeleteButton}>Delete</button>
+          <div className="product-item-info-img">
+          <img src={product.images[0]} alt={product.name} />
+          </div>
         </div>
       )}
     </div>
