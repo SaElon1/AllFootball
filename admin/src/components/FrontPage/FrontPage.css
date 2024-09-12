@@ -1,0 +1,10 @@
+.frontpage{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    margin-right: 190px;
+}
+
+.frontpage h1{
+    font-size: 60px;
+}
