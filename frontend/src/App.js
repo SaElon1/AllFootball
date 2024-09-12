@@ -8,7 +8,6 @@ import Cart from './pages/Cart'
 import SignupLogin from './pages/SignupLogin'
 import Footer from './components/Footer/Footer';
 import { useContext, useEffect, useState } from 'react';
-import productService from './services/product';
 import { UserContext } from './Context/UserContext';
 
 

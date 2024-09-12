@@ -2,7 +2,6 @@ const config = require("./utils/config")
 const express = require("express")
 const app = express()
 const mongoose = require('mongoose')
-const jwt = require("jsonwebtoken")
 const multer = require("multer")
 const cors = require("cors")
 const productRouter = require("./controllers/products")
@@ -24,7 +23,7 @@ app.get("/", (req, res) =>{
     res.send("Backend is running!")
 })
 
-//Image storing configuration
+//Image storing
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "./upload/images")
@@ -39,7 +38,7 @@ const upload = multer({storage})
 app.use("/images", express.static("upload/images"))
 
 app.post("/upload", upload.array("images", 10),(req,res) => {
-    const imageUrls = req.files.map(file => `http://localhost:${config.PORT}/images/${file.filename}`)
+    const imageUrls = req.files.map(file => `${config.BASE_URL}/images/${file.filename}`)
     res.json({
         imageUrls
 })
