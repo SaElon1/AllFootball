@@ -41,7 +41,7 @@ productRouter.post('/addproduct',upload.array('images',10), async (req,res)=> {
 
     const body = req.body
 
-    const imageUrls = req.files.map(file => `http://localhost:${config.PORT}/images/${file.filename}`)
+    const imageUrls = req.files.map(file => `${config.BASE_URL}/images/${file.filename}`)
 
     const product = new Product({
         id: id,
@@ -75,7 +75,7 @@ productRouter.put('/:id', upload.array('images', 10), async(req, res) => {
 
         let imageUrls = existingProduct.images
         if (req.files && req.files.length > 0) {
-            const uploadedImageUrls = req.files.map(file => `http://localhost:${config.PORT}/images/${file.filename}`)
+            const uploadedImageUrls = req.files.map(file => `${config.BASE_URL}/images/${file.filename}`)
             imageUrls = uploadedImageUrls
         }
         const product = {
