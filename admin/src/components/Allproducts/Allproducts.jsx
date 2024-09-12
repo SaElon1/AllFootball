@@ -31,6 +31,7 @@ const handleProductUpdate = (updatedProduct) => {
 
   return (
     <div className='allproducts'>
+      <h1>Product List</h1>
       <div className="productlist">
         {allproducts.map((product, k)=> {
           return(
