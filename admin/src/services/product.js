@@ -54,7 +54,18 @@ const updateProduct = async (id, newObject) => {
     }
 }
 
-export default {create, getProducts, updateProduct}
+const removeProduct = async (id) => {
+    try{
+        const response = await axios.delete(`${baseurl}/removeproduct/${id}`)
+
+        return response.data
+
+    }catch(error){
+        console.error(error)
+    }
+}
+
+export default {create, getProducts, updateProduct, removeProduct}
 
 
 
