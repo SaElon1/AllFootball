@@ -1,7 +1,5 @@
 # Full Stack E-Commerce Application 🛒
 
-**Status:** Academic Project
-
 ### 📌 Project Overview
 This repository contains an e-commerce web application built to simulate an online store environment.
 
