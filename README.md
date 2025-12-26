@@ -21,4 +21,4 @@ While my current focus is on **Data Science and analytics**, this project demons
 * **Admin panel:** For handling the store.
 
 ---
-*Disclaimer: This project was developed as part of my undergraduate studies. It serves as a demonstration of foundational coding skills and is not actively maintained.*
+This project was developed as part of my undergraduate studies. It serves as a demonstration of foundational coding skills and is not actively maintained.*
